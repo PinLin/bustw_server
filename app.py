@@ -2,6 +2,7 @@
 
 from flask import Flask, request, Response
 from pprint import pprint
+import sys
 import json
 
 from ptx import PTX
@@ -13,7 +14,7 @@ app = Flask(__name__)
 @app.route('/route/name', methods=['GET'])
 def route_name():
     # 讀取城市對應表
-    with open('city_map.json', 'r') as f:
+    with open(sys.path[0] + '/city_map.json', 'r') as f:
         city_map = json.load(f)
     # 使用者要查看哪個城市的路線
     try:
