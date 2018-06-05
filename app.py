@@ -11,20 +11,24 @@ from ptx import PTX
 api = PTX()
 app = Flask(__name__)
 
-@app.route('/route/name', methods=['GET'])
-def route_name():
+@app.route('/test', methods=['GET'])
+def test():
     # 讀取城市對應表
     with open(sys.path[0] + '/city_map.json', 'r') as f:
         city_map = json.load(f)
-    # 使用者要查看哪個城市的路線
+    # 使用者要查看哪個城市
     try:
         city = city_map[request.args['city']]
     except:
         city = ''
-    # 取得該城市所有路線名稱
-    names = api.load_routes_name(city)
+    # 取得該城市所有路線
+    routes = api.city_routes(city)
+    # 取出路線名稱部分
+    data = []
+    for route in routes:
+        data.append(route['RouteName']['Zh_tw'])
     # 回傳
-    return Response(json.dumps(names, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
 def main():
     app.run("0.0.0.0", 65432)
