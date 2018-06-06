@@ -11,8 +11,8 @@ from ptx import PTX
 api = PTX()
 app = Flask(__name__)
 
-@app.route('/test', methods=['GET'])
-def test():
+@app.route('/test/routes', methods=['GET'])
+def test_routes():
     # 讀取城市對應表
     with open(sys.path[0] + '/city_map.json', 'r') as f:
         city_map = json.load(f)
@@ -27,7 +27,7 @@ def test():
     except:
         route = ''
     # 取得該城市所有路線
-    routes = api.city_routes(city, route)
+    routes = api.bus_routes(city, route)
     # 取出路線名稱部分
     data = []
     for route in routes:

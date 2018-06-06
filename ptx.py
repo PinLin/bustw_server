@@ -15,7 +15,7 @@ class PTX:
         }
 
     # 取得特定縣市路線資訊
-    def city_routes(self, city:str, route:str=''):
+    def bus_routes(self, city:str, route:str=''):
         # 所有路線資訊
         if route == '':
             # API 網址
