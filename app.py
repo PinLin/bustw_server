@@ -21,8 +21,13 @@ def test():
         city = city_map[request.args['city']]
     except:
         city = ''
+    # 使用者要查看哪個路線
+    try:
+        route = request.args['route']
+    except:
+        route = ''
     # 取得該城市所有路線
-    routes = api.city_routes(city)
+    routes = api.city_routes(city, route)
     # 取出路線名稱部分
     data = []
     for route in routes:

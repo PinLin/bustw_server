@@ -15,9 +15,17 @@ class PTX:
         }
 
     # 取得特定縣市路線資訊
-    def city_routes(self, city:str):
-        # API 網址
-        url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}?$format=json".format(city=city)
+    def city_routes(self, city:str, route:str=''):
+        # 所有路線資訊
+        if route == '':
+            # API 網址
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}?$format=JSON"\
+                .format(city=city)
+        # 搜尋特定路線資訊
+        else:
+            # API 網址
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}/{route}?$format=JSON"\
+                .format(city=city, route=route)
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         # 如果成功就回傳
