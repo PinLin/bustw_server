@@ -33,3 +33,23 @@ class PTX:
             return json.loads(response.text)
         else:
             return {}
+
+    # 取得特定縣市站牌資訊
+    def bus_stops(self, city:str, route:str=None):
+        # 所有站牌資訊
+        if route == None:
+            # API 網址
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}?$format=JSON"\
+                .format(city=city)
+        # 搜尋特定站牌資訊
+        else:
+            # API 網址
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}/{route}?$format=JSON"\
+                .format(city=city, route=route)
+        # 取得資料
+        response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        # 如果成功就回傳
+        if response.status_code == 200:
+            return json.loads(response.text)
+        else:
+            return {}
