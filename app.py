@@ -23,12 +23,8 @@ def test_routes():
         city = ''
     # 取得該城市所有路線
     routes = api.bus_routes(city)
-    # 取出路線名稱部分
-    data = []
-    for route in routes:
-        data.append(route['RouteName']['Zh_tw'])
     # 回傳
-    return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps(routes, ensure_ascii=False), mimetype='application/json')
 
 def main():
     app.run("0.0.0.0", 65432)
