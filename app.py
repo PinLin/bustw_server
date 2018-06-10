@@ -21,10 +21,34 @@ def test_routes():
         city = city_map[request.args['city']]
     except:
         city = ''
-    # 取得該城市所有路線
-    routes = api.bus_routes(city)
+    # 使用者要查看哪個路線
+    try:
+        name = request.args['name']
+    except:
+        name = ''
+    # 取得該城市符合條件的所有路線
+    routes = api.bus_routes(city, name)
+    # 處理資料
+    data = {}
+    for route in routes: 
+        # 只留下需要的
+        data[route['RouteUID']] = {
+            # 路線名稱
+            'RouteName': route['RouteName']['Zh_tw'],
+            # 起站
+            'DepartureStopName': route['DepartureStopNameZh'],
+            # 終站
+            'DestinationStopName': route['DestinationStopNameZh'],
+        }
+        # 子路線
+        subroutes = {}
+        for subroute in route['SubRoutes']:
+            subroutes[subroute['SubRouteUID']] = {
+                'SubRouteName': subroute['SubRouteName']['Zh_tw'],
+            }
+        data[route['RouteUID']]['SubRoutes'] = subroutes
     # 回傳
-    return Response(json.dumps(routes, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
 @app.route('/test/stops', methods=['GET'])
 def test_stops():
@@ -38,16 +62,30 @@ def test_stops():
         city = ''
     # 使用者要查看哪個路線
     try:
-        route = request.args['route']
+        name = request.args['name']
     except:
-        route = ''
-    # 取得該城市所有路線
-    stops = api.bus_stops(city, route)
-    # 取出路線名稱部分
-    data = []
-    for stop in stops:
-        if stop['RouteName']['Zh_tw'] == route:
-            data.append(stop)
+        name = ''
+    # 取得該城市符合條件的所有路線
+    routes = api.bus_stops(city, name)
+    # 處理資料
+    data = {}
+    for route in routes:
+        # 路線名稱
+        if not route['RouteUID'] in data:
+            data[route['RouteUID']] = {}
+        data[route['RouteUID']]['RouteName'] = route['RouteName']['Zh_tw']
+        # 子路線
+        if not 'SubRoutes' in data[route['RouteUID']]:
+            data[route['RouteUID']]['SubRoutes'] = {}
+        data[route['RouteUID']]['SubRoutes'][route['SubRouteUID']] = {
+            'SubRouteName': route['SubRouteName']['Zh_tw'],
+        }
+        # 停靠站
+        stops = []
+        for stop in route['Stops']:
+            if not '不停靠' in stop['StopName']['Zh_tw']:
+                stops.append(stop['StopName']['Zh_tw'])
+        data[route['RouteUID']]['SubRoutes'][route['SubRouteUID']]['Stops'] = stops
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 

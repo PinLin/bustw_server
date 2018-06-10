@@ -15,41 +15,41 @@ class PTX:
         }
 
     # 取得特定縣市路線資訊
-    def bus_routes(self, city:str, route:str=None):
+    def bus_routes(self, city:str, name:str=None):
         # 所有路線資訊
-        if route == None:
+        if name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}?$format=JSON"\
                 .format(city=city)
         # 搜尋特定路線資訊
         else:
             # API 網址
-            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}/{route}?$format=JSON"\
-                .format(city=city, route=route)
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}/{name}?$format=JSON"\
+                .format(city=city, name=name)
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
-        # 如果成功就回傳
-        if response.status_code == 200:
-            return json.loads(response.text)
-        else:
+        # 判斷請求是否成功
+        if response.status_code != 200:
             return {}
+        else:
+            return json.loads(response.text)
 
     # 取得特定縣市站牌資訊
-    def bus_stops(self, city:str, route:str=None):
+    def bus_stops(self, city:str, name:str=None):
         # 所有站牌資訊
-        if route == None:
+        if name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}?$format=JSON"\
                 .format(city=city)
         # 搜尋特定站牌資訊
         else:
             # API 網址
-            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}/{route}?$format=JSON"\
-                .format(city=city, route=route)
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}/{name}?$format=JSON"\
+                .format(city=city, name=name)
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
-        # 如果成功就回傳
-        if response.status_code == 200:
-            return json.loads(response.text)
-        else:
+        # 判斷請求是否成功
+        if response.status_code != 200:
             return {}
+        else:
+            return json.loads(response.text)
