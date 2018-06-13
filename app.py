@@ -29,6 +29,8 @@ def get_info(city):
             'DepartureStopName': route['DepartureStopNameZh'],
             # 終站
             'DestinationStopName': route['DestinationStopNameZh'],
+            # 城市
+            'City': city,
         }
         # 子路線
         subroutes = {}
@@ -56,6 +58,8 @@ def get_stop(city, name):
         if not route['RouteUID'] in data:
             data[route['RouteUID']] = {}
         data[route['RouteUID']]['RouteName'] = route['RouteName']['Zh_tw']
+        # 城市
+        data[route['RouteUID']]['City'] = city
         # 子路線
         if not 'SubRoutes' in data[route['RouteUID']]:
             data[route['RouteUID']]['SubRoutes'] = {}
