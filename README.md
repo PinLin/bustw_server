@@ -21,6 +21,16 @@ bus tracker for Taiwanese Server
 | City      | 城市名稱（英文） |
 | Route     | 路線名稱         |
 
+## Usage
+
+```shell
+# Install requirements
+pip3 install -r requirements.txt
+
+# Start
+python3 app.py
+```
+
 ## Available Cities
 
 1. 基隆市：`Keelung`
