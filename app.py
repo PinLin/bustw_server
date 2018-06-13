@@ -47,14 +47,14 @@ def get_info(city):
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
-@app.route('/stop/<city>/<name>')
-def get_stop(city, name):
+@app.route('/stop/<city>/<route>')
+def get_stop(city, route):
     # 讀取城市對應表
     with open(sys.path[0] + '/city_map.json', 'r') as f:
         city_map = json.load(f)
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_stops(city_map[city], name)
+        routes = api.bus_stops(city_map[city], route)
     except KeyError:
         routes = {}
     # 處理資料
