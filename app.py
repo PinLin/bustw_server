@@ -11,23 +11,13 @@ from ptx import PTX
 api = PTX()
 app = Flask(__name__)
 
-@app.route('/test/routes', methods=['GET'])
-def test_routes():
+@app.route('/info/<city>', methods=['GET'])
+def get_info(city):
     # 讀取城市對應表
     with open(sys.path[0] + '/city_map.json', 'r') as f:
         city_map = json.load(f)
-    # 使用者要查看哪個城市
-    try:
-        city = city_map[request.args['city']]
-    except:
-        city = ''
-    # 使用者要查看哪個路線
-    try:
-        name = request.args['name']
-    except:
-        name = ''
     # 取得該城市符合條件的所有路線
-    routes = api.bus_routes(city, name)
+    routes = api.bus_routes(city_map[city])
     # 處理資料
     data = {}
     for route in routes: 
@@ -52,23 +42,13 @@ def test_routes():
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
-@app.route('/test/stops', methods=['GET'])
-def test_stops():
+@app.route('/stop/<city>/<name>', methods=['GET'])
+def get_stop(city, name):
     # 讀取城市對應表
     with open(sys.path[0] + '/city_map.json', 'r') as f:
         city_map = json.load(f)
-    # 使用者要查看哪個城市
-    try:
-        city = city_map[request.args['city']]
-    except:
-        city = ''
-    # 使用者要查看哪個路線
-    try:
-        name = request.args['name']
-    except:
-        name = ''
     # 取得該城市符合條件的所有路線
-    routes = api.bus_stops(city, name)
+    routes = api.bus_stops(city_map[city], name)
     # 處理資料
     data = {}
     for route in routes:
