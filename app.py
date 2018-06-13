@@ -81,7 +81,7 @@ def get_stop(city, name):
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
 def main():
-    app.run("0.0.0.0", 65432, debug=True)
+    app.run(port=65432)
 
 if __name__ == '__main__':
     main()
