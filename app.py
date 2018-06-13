@@ -11,6 +11,10 @@ from ptx import PTX
 api = PTX()
 app = Flask(__name__)
 
+@app.route('/')
+def get_intro():
+    return '<meta http-equiv="refresh" content="0; url=https://gitea.ntut.com.tw/PinLin/bustw_server">'
+
 @app.route('/info/<city>')
 def get_info(city):
     # 讀取城市對應表
