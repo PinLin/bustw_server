@@ -43,7 +43,8 @@ def test_routes():
         # 子路線
         subroutes = {}
         for subroute in route['SubRoutes']:
-            subroutes[subroute['SubRouteUID']] = {
+            newUID = subroute['SubRouteUID'] + str(subroute['Direction'] if 'Direction' in subroute else '')
+            subroutes[newUID] = {
                 # 子路線名稱
                 'SubRouteName': subroute['SubRouteName']['Zh_tw'],
             }
@@ -78,7 +79,8 @@ def test_stops():
         # 子路線
         if not 'SubRoutes' in data[route['RouteUID']]:
             data[route['RouteUID']]['SubRoutes'] = {}
-        data[route['RouteUID']]['SubRoutes'][route['SubRouteUID']] = {
+        newUID = route['SubRouteUID'] + str(route['Direction'] if 'Direction' in route else '')
+        data[route['RouteUID']]['SubRoutes'][newUID] = {
             # 子路線名稱
             'SubRouteName': route['SubRouteName']['Zh_tw'],
         }
@@ -90,7 +92,7 @@ def test_stops():
                 continue
             # 停靠站名稱
             stops.append(stop['StopName']['Zh_tw'])
-        data[route['RouteUID']]['SubRoutes'][route['SubRouteUID']]['Stops'] = stops
+        data[route['RouteUID']]['SubRoutes'][newUID]['Stops'] = stops
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
