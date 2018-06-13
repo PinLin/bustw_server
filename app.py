@@ -11,7 +11,7 @@ from ptx import PTX
 api = PTX()
 app = Flask(__name__)
 
-@app.route('/info/<city>', methods=['GET'])
+@app.route('/info/<city>')
 def get_info(city):
     # 讀取城市對應表
     with open(sys.path[0] + '/city_map.json', 'r') as f:
@@ -42,7 +42,7 @@ def get_info(city):
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
-@app.route('/stop/<city>/<name>', methods=['GET'])
+@app.route('/stop/<city>/<name>')
 def get_stop(city, name):
     # 讀取城市對應表
     with open(sys.path[0] + '/city_map.json', 'r') as f:
