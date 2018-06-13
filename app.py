@@ -97,7 +97,7 @@ def test_stops():
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
 def main():
-    app.run("0.0.0.0", 65432)
+    app.run("0.0.0.0", 65432, debug=True)
 
 if __name__ == '__main__':
     main()
