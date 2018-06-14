@@ -31,13 +31,13 @@ def get_info(city):
         # 只留下需要的
         data[route['RouteUID']] = {
             # 路線名稱
-            'RouteName': route['RouteName']['Zh_tw'],
+            'routeName': route['RouteName']['Zh_tw'],
             # 起站
-            'DepartureStopName': route['DepartureStopNameZh'],
+            'departureStopName': route['DepartureStopNameZh'],
             # 終站
-            'DestinationStopName': route['DestinationStopNameZh'],
+            'destinationStopName': route['DestinationStopNameZh'],
             # 城市
-            'City': city,
+            'city': city,
         }
         # 子路線
         subroutes = {}
@@ -45,9 +45,9 @@ def get_info(city):
             newUID = subroute['SubRouteUID'] + str(subroute['Direction'] if 'Direction' in subroute else '')
             subroutes[newUID] = {
                 # 子路線名稱
-                'SubRouteName': subroute['SubRouteName']['Zh_tw'],
+                'subRouteName': subroute['SubRouteName']['Zh_tw'],
             }
-        data[route['RouteUID']]['SubRoutes'] = subroutes
+        data[route['RouteUID']]['subRoutes'] = subroutes
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
@@ -67,16 +67,16 @@ def get_stop(city, route):
         # 路線名稱
         if not route['RouteUID'] in data:
             data[route['RouteUID']] = {}
-        data[route['RouteUID']]['RouteName'] = route['RouteName']['Zh_tw']
+        data[route['RouteUID']]['routeName'] = route['RouteName']['Zh_tw']
         # 城市
-        data[route['RouteUID']]['City'] = city
+        data[route['RouteUID']]['city'] = city
         # 子路線
         if not 'SubRoutes' in data[route['RouteUID']]:
-            data[route['RouteUID']]['SubRoutes'] = {}
+            data[route['RouteUID']]['subRoutes'] = {}
         newUID = route['SubRouteUID'] + str(route['Direction'] if 'Direction' in route else '')
-        data[route['RouteUID']]['SubRoutes'][newUID] = {
+        data[route['RouteUID']]['subRoutes'][newUID] = {
             # 子路線名稱
-            'SubRouteName': route['SubRouteName']['Zh_tw'],
+            'subRouteName': route['SubRouteName']['Zh_tw'],
         }
         # 停靠站
         stops = []
@@ -86,7 +86,7 @@ def get_stop(city, route):
                 continue
             # 停靠站名稱
             stops.append(stop['StopName']['Zh_tw'])
-        data[route['RouteUID']]['SubRoutes'][newUID]['Stops'] = stops
+        data[route['RouteUID']]['subRoutes'][newUID]['stops'] = stops
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
