@@ -24,7 +24,7 @@ def get_info(city):
     try:
         routes = api.bus_route(maps[city])
     except KeyError:
-        routes = {}
+        routes = []
     # 處理資料
     data = {}
     for route in routes: 
@@ -60,7 +60,7 @@ def get_stop(city, route):
     try:
         routes = api.bus_stop(maps[city], route)
     except KeyError:
-        routes = {}
+        routes = []
     # 處理資料
     data = {}
     for route in routes:

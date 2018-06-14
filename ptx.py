@@ -30,7 +30,7 @@ class PTX:
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         # 判斷請求是否成功
         if response.status_code != 200:
-            return {}
+            return []
         else:
             return json.loads(response.text)
 
@@ -50,6 +50,6 @@ class PTX:
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         # 判斷請求是否成功
         if response.status_code != 200:
-            return {}
+            return []
         else:
             return json.loads(response.text)
