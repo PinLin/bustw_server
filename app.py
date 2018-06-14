@@ -22,7 +22,7 @@ def get_info(city):
         city_map = json.load(f)
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_routes(city_map[city])
+        routes = api.bus_route(city_map[city])
     except KeyError:
         routes = {}
     # 處理資料
@@ -58,7 +58,7 @@ def get_stop(city, route):
         city_map = json.load(f)
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_stops(city_map[city], route)
+        routes = api.bus_stop(city_map[city], route)
     except KeyError:
         routes = {}
     # 處理資料
