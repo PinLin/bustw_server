@@ -28,15 +28,6 @@ def get_info(city):
     # 處理資料
     data = []
     for route in routes:
-        # 處理子路線
-        subroutes = []
-        for subroute in route['SubRoutes']:
-            subroutes.append({
-                # 子路線辨識碼
-                'subRouteUID': subroute['SubRouteUID'] + str(subroute['Direction'] if 'Direction' in subroute else ''),
-                # 子路線名稱
-                'subRouteName': subroute['SubRouteName']['Zh_tw'],
-            })
         # 只留下需要的資料
         data.append({
             # 路線辨識碼
@@ -49,8 +40,6 @@ def get_info(city):
             'departureStopName': route['DepartureStopNameZh'],
             # 終站
             'destinationStopName': route['DestinationStopNameZh'],
-            # 子路線
-            'subRoutes': subroutes,
         })
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
