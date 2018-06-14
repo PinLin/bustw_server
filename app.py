@@ -15,7 +15,7 @@ app = Flask(__name__)
 def get_intro():
     return '<meta http-equiv="refresh" content="0; url=https://gitea.ntut.com.tw/PinLin/bustw_server">'
 
-@app.route('/info/<city>')
+@app.route('/info/<city>/')
 def get_info(city):
     # 讀取城市對應表
     with open(sys.path[0] + '/map.json', 'r') as f:
@@ -47,7 +47,7 @@ def get_info(city):
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
-@app.route('/stop/<city>/<route>')
+@app.route('/stop/<city>/<route>/')
 def get_stop(city, route):
     # 讀取城市對應表
     with open(sys.path[0] + '/map.json', 'r') as f:
