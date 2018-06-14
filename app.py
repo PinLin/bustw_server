@@ -43,7 +43,7 @@ def get_info(city):
             # 終站
             'destinationStopName': route['DestinationStopNameZh'],
         })
-        
+
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
