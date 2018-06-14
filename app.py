@@ -20,11 +20,13 @@ def get_info(city):
     # 讀取城市對應表
     with open(sys.path[0] + '/map.json', 'r') as f:
         maps = json.load(f)
+
     # 取得該城市符合條件的所有路線
     try:
         routes = api.bus_route(maps[city])
     except:
         routes = []
+
     # 處理資料
     data = []
     for route in routes:
@@ -41,6 +43,7 @@ def get_info(city):
             # 終站
             'destinationStopName': route['DestinationStopNameZh'],
         })
+        
     # 回傳
     return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
 
