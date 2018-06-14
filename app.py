@@ -18,11 +18,11 @@ def get_intro():
 @app.route('/info/<city>')
 def get_info(city):
     # 讀取城市對應表
-    with open(sys.path[0] + '/city_map.json', 'r') as f:
-        city_map = json.load(f)
+    with open(sys.path[0] + '/map.json', 'r') as f:
+        maps = json.load(f)
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_route(city_map[city])
+        routes = api.bus_route(maps[city])
     except KeyError:
         routes = {}
     # 處理資料
@@ -54,11 +54,11 @@ def get_info(city):
 @app.route('/stop/<city>/<route>')
 def get_stop(city, route):
     # 讀取城市對應表
-    with open(sys.path[0] + '/city_map.json', 'r') as f:
-        city_map = json.load(f)
+    with open(sys.path[0] + '/map.json', 'r') as f:
+        maps = json.load(f)
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_stop(city_map[city], route)
+        routes = api.bus_stop(maps[city], route)
     except KeyError:
         routes = {}
     # 處理資料
