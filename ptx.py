@@ -14,14 +14,14 @@ class PTX:
             'Accept-Language': 'zh-TW,zh;q=0.8,en-US;q=0.5,en;q=0.3',
         }
 
-    # 取得特定縣市路線資訊
+    # 取得特定縣市路線基本資訊
     def bus_route(self, city:str, name:str=None):
-        # 所有路線資訊
+        # 所有資訊
         if name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}?$format=JSON"\
                 .format(city=city)
-        # 搜尋特定路線資訊
+        # 搜尋特定資訊
         else:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}/{name}?$format=JSON"\
@@ -34,14 +34,14 @@ class PTX:
         else:
             return json.loads(response.text)
 
-    # 取得特定縣市站牌資訊
+    # 取得特定縣市路線站牌資訊
     def bus_stop(self, city:str, name:str=None):
-        # 所有站牌資訊
+        # 所有資訊
         if name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}?$format=JSON"\
                 .format(city=city)
-        # 搜尋特定站牌資訊
+        # 搜尋特定資訊
         else:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}/{name}?$format=JSON"\
@@ -54,14 +54,14 @@ class PTX:
         else:
             return json.loads(response.text)
 
-    # 取得特定縣市到站資訊
+    # 取得特定縣市路線到站資訊
     def bus_time(self, city:str, name:str=None):
-        # 所有到站資訊
+        # 所有資訊
         if name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/{city}?$format=JSON"\
                 .format(city=city)
-        # 搜尋特定到站資訊
+        # 搜尋特定資訊
         else:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/{city}/{name}?$format=JSON"\
