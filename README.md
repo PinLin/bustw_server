@@ -53,7 +53,14 @@ bus tracker for Taiwanese Server
                   "stopUID": "String",
                   "stopName": "String",
                   "estimateTime": "Integer",
-                  "stopStatus": "Integer"
+                  "stopStatus": "Integer",
+                  "buses": [
+                    {
+                      "plateNumb": "String",
+                      "busStatus": "Integer",
+                      "a2EventType": "Integer"
+                    }
+                  ]
                 }
               ]
             }
