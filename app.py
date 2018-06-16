@@ -98,6 +98,11 @@ def get_stop(city, route):
                 stop_list[-1]['estimateTime'] = bus_times[list(map(lambda x: x['StopUID'], bus_times)).index(stop['StopUID'])]['EstimateTime']
             except:
                 stop_list[-1]['estimateTime'] = -1
+            # 停靠站停靠狀態
+            try:
+                stop_list[-1]['stopStatus'] = bus_times[list(map(lambda x: x['StopUID'], bus_times)).index(stop['StopUID'])]['StopStatus']
+            except:
+                stop_list[-1]['stopStatus'] = 0
 
         try:
             # 確認是否已經有該 UID 的資料
