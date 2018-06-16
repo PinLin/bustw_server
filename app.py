@@ -45,7 +45,7 @@ def get_info(city):
         })
 
     # 回傳
-    return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps({'routes': data}, ensure_ascii=False), mimetype='application/json')
 
 @app.route('/stop/<city>/<route>/')
 def get_stop(city, route):
@@ -123,7 +123,7 @@ def get_stop(city, route):
             })
             
     # 回傳
-    return Response(json.dumps(data, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps({'routes': data}, ensure_ascii=False), mimetype='application/json')
 
 def main():
     app.run(port=65432)
