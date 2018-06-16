@@ -23,7 +23,7 @@ def get_info(city):
 
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_route(maps[city])
+        routes = api.bus_route(maps[city], arg={'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh'})
     except:
         routes = []
 
@@ -55,7 +55,7 @@ def get_stop(city, route):
 
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_stop(maps[city], route)
+        routes = api.bus_stop(maps[city], route, arg={'$select': 'RouteUID,RouteName,Direction,SubRouteUID,SubRouteName,Stops'})
     except:
         routes = []
 
