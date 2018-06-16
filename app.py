@@ -23,29 +23,29 @@ def get_info(city):
 
     # 取得該城市符合條件的所有路線
     try:
-        infos = api.bus_route(maps[city], arg={'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh'})
+        bus_routes = api.bus_route(maps[city], arg={'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh'})
     except:
-        infos = []
+        bus_routes = []
 
     # 處理資料
-    reault = []
-    for route in infos:
+    result = []
+    for bus_route in bus_routes:
         # 只留下需要的資料
-        reault.append({
+        result.append({
             # 路線辨識碼
-            'routeUID': route['RouteUID'],
+            'routeUID': bus_route['RouteUID'],
             # 路線名稱
-            'routeName': route['RouteName']['Zh_tw'],
+            'routeName': bus_route['RouteName']['Zh_tw'],
             # 城市
             'city': city,
             # 起站
-            'departureStopName': route['DepartureStopNameZh'],
+            'departureStopName': bus_route['DepartureStopNameZh'],
             # 終站
-            'destinationStopName': route['DestinationStopNameZh'],
+            'destinationStopName': bus_route['DestinationStopNameZh'],
         })
 
     # 回傳
-    return Response(json.dumps({'routes': reault}, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps({'routes': result}, ensure_ascii=False), mimetype='application/json')
 
 @app.route('/stop/<city>/<route>/')
 def get_stop(city, route):
