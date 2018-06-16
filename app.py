@@ -94,7 +94,10 @@ def get_stop(city, route):
             # 停靠站名稱
             stop_list[-1]['stopName'] = stop['StopName']['Zh_tw']
             # 停靠站到站時間
-            stop_list[-1]['estimateTime'] = None
+            try:
+                stop_list[-1]['estimateTime'] = bus_times[list(map(lambda x: x['StopUID'], bus_times)).index(stop['StopUID'])]['EstimateTime']
+            except:
+                stop_list[-1]['estimateTime'] = -1
 
         try:
             # 確認是否已經有該 UID 的資料
