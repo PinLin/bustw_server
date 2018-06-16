@@ -90,11 +90,11 @@ def get_stop(city, route):
             # 新增停靠站
             stop_list.append({})
             # 停靠站辨識碼
-            stop_list[-1]['StopUID'] = stop['StopUID']
+            stop_list[-1]['stopUID'] = stop['StopUID']
             # 停靠站名稱
-            stop_list[-1]['StopName'] = stop['StopName']['Zh_tw']
+            stop_list[-1]['stopName'] = stop['StopName']['Zh_tw']
             # 停靠站到站時間
-            stop_list[-1]['EstimateTime'] = None
+            stop_list[-1]['estimateTime'] = None
 
         try:
             # 確認是否已經有該 UID 的資料
