@@ -89,24 +89,12 @@ def get_stop(city, route):
                 'EstimateTime': None,
             })
 
-        # 確認是否已經有該 UID 的資料
         try:
+            # 確認是否已經有該 UID 的資料
             exist = (lambda x: x['routeUID'], result).index(bus_stop['RouteUID'])
-        except ValueError:
-            exist = -1
-
-        # 如果已經存在該 UID 的資料
-        if exist != -1:
             # 確認是否已經有該 subRouteUID 的資料
-            repeat = False
-            for i in range(len(result[exist]['subRoutes'])):
-                # 如果 UID 相同
-                if result[exist]['subRoutes'][i]['subRouteUID'] == bus_stop['SubRouteUID']:
-                    repeat = True
-                    break
-            # 如果不存在該 subRouteUID 的資料
-            if not repeat:
-                # 新增子路線的資料
+            if not bus_stop['SubRouteUID'] in (lambda x: x['subRouteUID'], result[exist]['subRoutes']):
+                # 沒有該 subRouteUID 的資料所以新增子路線
                 result[exist]['subRoutes'].append({
                     # 子路線辨識碼
                     'subRouteUID': bus_stop['SubRouteUID'],
@@ -115,8 +103,8 @@ def get_stop(city, route):
                     # 停靠站列表
                     'stops': stop_list,
                 })
-        else:
-            # 新增該路線的資料
+        except ValueError:
+            # 沒有該 UID 的資料所以新增資料
             result.append({})
             # 路線辨識碼
             result[-1]['routeUID'] = bus_stop['RouteUID']
