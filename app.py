@@ -121,6 +121,12 @@ def get_stop(city, route):
                     'stops': stops,
                 }],
             })
+
+    # 取得該城市符合條件的所有路線的到站時間
+    try:
+        routes = api.bus_time(maps[city], route)
+    except:
+        routes = []
             
     # 回傳
     return Response(json.dumps({'routes': data}, ensure_ascii=False), mimetype='application/json')
