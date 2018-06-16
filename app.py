@@ -90,12 +90,10 @@ def get_stop(city, route):
             })
 
         # 確認是否已經有該 UID 的資料
-        exist = -1
-        for i in range(len(result)):
-            # 如果 UID 相同
-            if result[i]['routeUID'] == bus_stop['RouteUID']:
-                exist = i
-                break
+        try:
+            exist = (lambda x: x['routeUID'], result).index(bus_stop['RouteUID'])
+        except ValueError:
+            exist = -1
 
         # 如果已經存在該 UID 的資料
         if exist != -1:
