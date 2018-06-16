@@ -73,3 +73,23 @@ class PTX:
             return []
         else:
             return json.loads(response.text)
+
+    # 取得特定縣市路線動態資訊
+    def bus_real(self, city:str, name:str=None):
+        # 所有資訊
+        if name == None:
+            # API 網址
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/{city}?$format=JSON"\
+                .format(city=city)
+        # 搜尋特定資訊
+        else:
+            # API 網址
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/{city}/{name}?$format=JSON"\
+                .format(city=city, name=name)
+        # 取得資料
+        response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        # 判斷請求是否成功
+        if response.status_code != 200:
+            return []
+        else:
+            return json.loads(response.text)
