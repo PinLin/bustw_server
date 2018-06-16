@@ -69,7 +69,11 @@ def get_stop(city, route):
             if '不停靠' in stop['StopName']['Zh_tw']:
                 continue
             # 停靠站名稱
-            stops.append(stop['StopName']['Zh_tw'])
+            stops.append({
+                'StopUID': stop['StopUID'],
+                'StopName': stop['StopName']['Zh_tw'],
+                'EstimateTime': None,
+            })
 
         # 在 SubRouteUID 後方加入 Direction
         route['SubRouteUID'] += str(route['Direction'] if 'Direction' in route else '')
