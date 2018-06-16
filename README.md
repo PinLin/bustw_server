@@ -98,3 +98,8 @@ python3 app.py
 21. 金門縣：`KinmenCounty`
 22. 連江縣：`LienchiangCounty`
 23. 公路客運：`InterCity`
+
+## Source
+
+公共運輸整合資訊流通服務平臺（Public Transport data eXchange, PTX）
+http://ptx.transportdata.tw/PTX
