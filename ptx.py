@@ -15,17 +15,17 @@ class PTX:
         }
 
     # 取得特定縣市路線基本資訊
-    def bus_route(self, city:str, name:str=None):
+    def bus_route(self, city:str, route_name:str=None):
         # 所有資訊
-        if name == None:
+        if route_name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}?$format=JSON"\
                 .format(city=city)
         # 搜尋特定資訊
         else:
             # API 網址
-            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}/{name}?$format=JSON"\
-                .format(city=city, name=name)
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/Route/{city}/{route_name}?$format=JSON"\
+                .format(city=city, route_name=route_name)
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         # 判斷請求是否成功
@@ -35,17 +35,17 @@ class PTX:
             return json.loads(response.text)
 
     # 取得特定縣市路線站牌資訊
-    def bus_stop(self, city:str, name:str=None):
+    def bus_stop(self, city:str, route_name:str=None):
         # 所有資訊
-        if name == None:
+        if route_name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}?$format=JSON"\
                 .format(city=city)
         # 搜尋特定資訊
         else:
             # API 網址
-            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}/{name}?$format=JSON"\
-                .format(city=city, name=name)
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/{city}/{route_name}?$format=JSON"\
+                .format(city=city, route_name=route_name)
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         # 判斷請求是否成功
@@ -55,17 +55,17 @@ class PTX:
             return json.loads(response.text)
 
     # 取得特定縣市路線到站資訊
-    def bus_time(self, city:str, name:str=None):
+    def bus_time(self, city:str, route_name:str=None):
         # 所有資訊
-        if name == None:
+        if route_name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/{city}?$format=JSON"\
                 .format(city=city)
         # 搜尋特定資訊
         else:
             # API 網址
-            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/{city}/{name}?$format=JSON"\
-                .format(city=city, name=name)
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/{city}/{route_name}?$format=JSON"\
+                .format(city=city, route_name=route_name)
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         # 判斷請求是否成功
@@ -75,17 +75,17 @@ class PTX:
             return json.loads(response.text)
 
     # 取得特定縣市路線動態資訊
-    def bus_real(self, city:str, name:str=None):
+    def bus_real(self, city:str, route_name:str=None):
         # 所有資訊
-        if name == None:
+        if route_name == None:
             # API 網址
             url = "http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/{city}?$format=JSON"\
                 .format(city=city)
         # 搜尋特定資訊
         else:
             # API 網址
-            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/{city}/{name}?$format=JSON"\
-                .format(city=city, name=name)
+            url = "http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeNearStop/{city}/{route_name}?$format=JSON"\
+                .format(city=city, route_name=route_name)
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
         # 判斷請求是否成功
