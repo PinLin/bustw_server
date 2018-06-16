@@ -68,7 +68,7 @@ def get_now(city, route):
         bus_stops = []
     # 取得該城市符合條件的所有路線
     try:
-        bus_times = api.bus_time(maps[city], route)
+        bus_times = api.bus_time(maps[city], route, arg={'$select': 'StopUID,EstimateTime,StopStatus'})
     except:
         bus_times = []
 
