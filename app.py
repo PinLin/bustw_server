@@ -28,10 +28,10 @@ def get_info(city):
         infos = []
 
     # 處理資料
-    data = []
+    reault = []
     for route in infos:
         # 只留下需要的資料
-        data.append({
+        reault.append({
             # 路線辨識碼
             'routeUID': route['RouteUID'],
             # 路線名稱
@@ -45,7 +45,7 @@ def get_info(city):
         })
 
     # 回傳
-    return Response(json.dumps({'routes': data}, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps({'routes': reault}, ensure_ascii=False), mimetype='application/json')
 
 @app.route('/stop/<city>/<route>/')
 def get_stop(city, route):
@@ -60,7 +60,7 @@ def get_stop(city, route):
         infos = []
 
     # 處理資料
-    data = []
+    result = []
     for info in infos:
         # 記錄停靠站
         stops = []
@@ -80,9 +80,9 @@ def get_stop(city, route):
 
         # 確認是否已經有該 UID 的資料
         exist = -1
-        for i in range(len(data)):
+        for i in range(len(result)):
             # 如果 UID 相同
-            if data[i]['routeUID'] == info['RouteUID']:
+            if result[i]['routeUID'] == info['RouteUID']:
                 exist = i
                 break
 
@@ -90,15 +90,15 @@ def get_stop(city, route):
         if exist != -1:
             # 確認是否已經有該 subRouteUID 的資料
             repeat = False
-            for i in range(len(data[exist]['subRoutes'])):
+            for i in range(len(result[exist]['subRoutes'])):
                 # 如果 UID 相同
-                if data[exist]['subRoutes'][i]['subRouteUID'] == info['SubRouteUID']:
+                if result[exist]['subRoutes'][i]['subRouteUID'] == info['SubRouteUID']:
                     repeat = True
                     break
             # 如果不存在該 subRouteUID 的資料
             if not repeat:
                 # 新增子路線的資料
-                data[exist]['subRoutes'].append({
+                result[exist]['subRoutes'].append({
                     # 子路線辨識碼
                     'subRouteUID': info['SubRouteUID'],
                     # 子路線名稱
@@ -108,7 +108,7 @@ def get_stop(city, route):
                 })
         else:
             # 新增該路線的資料
-            data.append({
+            result.append({
                 # 路線辨識碼
                 'routeUID': info['RouteUID'],
                 # 路線名稱
@@ -133,7 +133,7 @@ def get_stop(city, route):
         routes = []
             
     # 回傳
-    return Response(json.dumps({'routes': data}, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps({'routes': result}, ensure_ascii=False), mimetype='application/json')
 
 def main():
     app.run(port=65432)
