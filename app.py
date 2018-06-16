@@ -23,13 +23,13 @@ def get_info(city):
 
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_route(maps[city], arg={'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh'})
+        infos = api.bus_route(maps[city], arg={'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh'})
     except:
-        routes = []
+        infos = []
 
     # 處理資料
     data = []
-    for route in routes:
+    for route in infos:
         # 只留下需要的資料
         data.append({
             # 路線辨識碼
