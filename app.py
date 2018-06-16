@@ -66,6 +66,11 @@ def get_stop(city, route):
         bus_stops = api.bus_stop(maps[city], route, arg={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
     except:
         bus_stops = []
+    # 取得該城市符合條件的所有路線
+    try:
+        bus_times = api.bus_time(maps[city], route)
+    except:
+        bus_times = []
 
     # 處理資料
     result = []
@@ -82,12 +87,14 @@ def get_stop(city, route):
             # 不停靠的站不顯示
             if '不停靠' in stop['StopName']['Zh_tw']:
                 continue
+            # 新增停靠站
+            stop_list.append({})
+            # 停靠站辨識碼
+            stop_list[-1]['StopUID'] = stop['StopUID']
             # 停靠站名稱
-            stop_list.append({
-                'StopUID': stop['StopUID'],
-                'StopName': stop['StopName']['Zh_tw'],
-                'EstimateTime': None,
-            })
+            stop_list[-1]['StopName'] = stop['StopName']['Zh_tw']
+            # 停靠站到站時間
+            stop_list[-1]['EstimateTime'] = None
 
         try:
             # 確認是否已經有該 UID 的資料
