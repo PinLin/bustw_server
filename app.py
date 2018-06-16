@@ -70,24 +70,24 @@ def get_stop(city, route):
     # 處理資料
     result = []
     for bus_stop in bus_stops:
-        # 記錄停靠站
-        stops = []
-        for stop in bus_stop['Stops']:
-            # 不停靠的站不顯示
-            if '不停靠' in stop['StopName']['Zh_tw']:
-                continue
-            # 停靠站名稱
-            stops.append({
-                'StopUID': stop['StopUID'],
-                'StopName': stop['StopName']['Zh_tw'],
-                'EstimateTime': None,
-            })
-
         # 在 SubRouteUID 後方加入 Direction
         try:
             bus_stop['SubRouteUID'] += str(bus_stop['Direction'])
         except:
             pass
+
+        # 記錄停靠站
+        stop_list = []
+        for stop in bus_stop['Stops']:
+            # 不停靠的站不顯示
+            if '不停靠' in stop['StopName']['Zh_tw']:
+                continue
+            # 停靠站名稱
+            stop_list.append({
+                'StopUID': stop['StopUID'],
+                'StopName': stop['StopName']['Zh_tw'],
+                'EstimateTime': None,
+            })
 
         # 確認是否已經有該 UID 的資料
         exist = -1
@@ -115,7 +115,7 @@ def get_stop(city, route):
                     # 子路線名稱
                     'subRouteName': bus_stop['SubRouteName']['Zh_tw'],
                     # 停靠站列表
-                    'stops': stops,
+                    'stops': stop_list,
                 })
         else:
             # 新增該路線的資料
@@ -136,7 +136,7 @@ def get_stop(city, route):
                 # 子路線名稱
                 'subRouteName': bus_stop['SubRouteName']['Zh_tw'],
                 # 停靠站列表
-                'stops': stops,
+                'stops': stop_list,
             }]
             
     # 回傳
