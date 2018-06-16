@@ -2,26 +2,66 @@
 
 bus tracker for Taiwanese Server
 
-## API
+## API List
 
 > /info/{City}
 
-取得特定縣市之公車路線資料。
+1. 取得特定縣市之所有路線靜態資料。
+2. 參數列表：
+    | Parameter | Value            |
+    | --------- | ---------------- |
+    | City      | 城市名稱（英文） |
+3. 回傳格式：
+    ```json
+    {
+      "routes": [
+        {
+          "routeUID": "String",
+          "routeName": "String",
+          "city": "String",
+          "departureStopName": "String",
+          "destinationStopName": "String"
+        }
+      ]
+    }
+    ```
 
-| Parameter | Value            |
-| --------- | ---------------- |
-| City      | 城市名稱（英文） |
+> /now/{City}/{Route}
 
-> /stop/{City}/{Route}
+1. 取得特定縣市之特定路線動態資料。
+2. 參數列表：
+    | Parameter | Value            |
+    | --------- | ---------------- |
+    | City      | 城市名稱（英文） |
+    | Route     | 路線名稱（中文） |
+3. 回傳格式：
+    ```json
+    {
+      "routes": [
+        {
+          "routeUID": "String",
+          "routeName": "String",
+          "city": "String",
+          "subRoutes": [
+            {
+              "subRouteUID": "String",
+              "subRouteName": "String",
+              "stops": [
+                {
+                  "stopUID": "String",
+                  "stopName": "String",
+                  "estimateTime": "Integer",
+                  "stopStatus": "Integer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    ```
 
-取得特定縣市之特定公車站序資料。
-
-| Parameter | Value            |
-| --------- | ---------------- |
-| City      | 城市名稱（英文） |
-| Route     | 路線名稱         |
-
-## Usage
+## Install and Run
 
 ```shell
 # Install requirements
