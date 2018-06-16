@@ -8,6 +8,7 @@ bus tracker for Taiwanese Server
 
 1. 取得特定縣市之所有路線靜態資料。
 2. 參數列表：
+
     | Parameter | Value            |
     | --------- | ---------------- |
     | City      | 城市名稱（英文） |
@@ -30,6 +31,7 @@ bus tracker for Taiwanese Server
 
 1. 取得特定縣市之特定路線動態資料。
 2. 參數列表：
+
     | Parameter | Value            |
     | --------- | ---------------- |
     | City      | 城市名稱（英文） |
