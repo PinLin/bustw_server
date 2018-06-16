@@ -71,6 +71,11 @@ def get_now(city, route):
         bus_times = api.bus_time(maps[city], route, arg={'$select': 'StopUID,EstimateTime,StopStatus'})
     except:
         bus_times = []
+    # 取得該城市符合條件的所有路線
+    try:
+        bus_reals = api.bus_real(maps[city], route)
+    except:
+        bus_reals = []
 
     # 處理資料
     result = []
@@ -103,7 +108,20 @@ def get_now(city, route):
                 stop_list[-1]['stopStatus'] = bus_times[list(map(lambda x: x['StopUID'], bus_times)).index(stop['StopUID'])]['StopStatus']
             except:
                 stop_list[-1]['stopStatus'] = 0
-
+            # 車牌號碼
+            stop_list[-1]['buses'] = []
+            for bus_real in bus_reals:
+                if bus_real['StopUID'] == stop['StopUID']:
+                    # 新公車
+                    stop_list[-1]['buses'].append({
+                        # 車牌號碼
+                        'plateNumb': bus_real['PlateNumb'],
+                        # 行車狀態
+                        'busStatus': bus_real['BusStatus'],
+                        # 進站離站
+                        'a2EventType': bus_real['A2EventType'],
+                    })
+            
         try:
             # 確認是否已經有該 UID 的資料
             exist = (lambda x: x['routeUID'], result).index(bus_stop['RouteUID'])
