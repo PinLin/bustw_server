@@ -55,16 +55,16 @@ def get_stop(city, route):
 
     # 取得該城市符合條件的所有路線
     try:
-        routes = api.bus_stop(maps[city], route, arg={'$select': 'RouteUID,RouteName,Direction,SubRouteUID,SubRouteName,Stops'})
+        infos = api.bus_stop(maps[city], route, arg={'$select': 'RouteUID,RouteName,Direction,SubRouteUID,SubRouteName,Stops'})
     except:
-        routes = []
+        infos = []
 
     # 處理資料
     data = []
-    for route in routes:
+    for info in infos:
         # 記錄停靠站
         stops = []
-        for stop in route['Stops']:
+        for stop in info['Stops']:
             # 不停靠的站不顯示
             if '不停靠' in stop['StopName']['Zh_tw']:
                 continue
@@ -76,13 +76,13 @@ def get_stop(city, route):
             })
 
         # 在 SubRouteUID 後方加入 Direction
-        route['SubRouteUID'] += str(route['Direction'] if 'Direction' in route else '')
+        info['SubRouteUID'] += str(info['Direction'] if 'Direction' in info else '')
 
         # 確認是否已經有該 UID 的資料
         exist = -1
         for i in range(len(data)):
             # 如果 UID 相同
-            if data[i]['routeUID'] == route['RouteUID']:
+            if data[i]['routeUID'] == info['RouteUID']:
                 exist = i
                 break
 
@@ -92,7 +92,7 @@ def get_stop(city, route):
             repeat = False
             for i in range(len(data[exist]['subRoutes'])):
                 # 如果 UID 相同
-                if data[exist]['subRoutes'][i]['subRouteUID'] == route['SubRouteUID']:
+                if data[exist]['subRoutes'][i]['subRouteUID'] == info['SubRouteUID']:
                     repeat = True
                     break
             # 如果不存在該 subRouteUID 的資料
@@ -100,9 +100,9 @@ def get_stop(city, route):
                 # 新增子路線的資料
                 data[exist]['subRoutes'].append({
                     # 子路線辨識碼
-                    'subRouteUID': route['SubRouteUID'],
+                    'subRouteUID': info['SubRouteUID'],
                     # 子路線名稱
-                    'subRouteName': route['SubRouteName']['Zh_tw'],
+                    'subRouteName': info['SubRouteName']['Zh_tw'],
                     # 停靠站列表
                     'stops': stops,
                 })
@@ -110,17 +110,17 @@ def get_stop(city, route):
             # 新增該路線的資料
             data.append({
                 # 路線辨識碼
-                'routeUID': route['RouteUID'],
+                'routeUID': info['RouteUID'],
                 # 路線名稱
-                'routeName': route['RouteName']['Zh_tw'],
+                'routeName': info['RouteName']['Zh_tw'],
                 # 城市
                 'city': city,
                 # 子路線
                 'subRoutes': [{
                     # 子路線辨識碼
-                    'subRouteUID': route['SubRouteUID'],
+                    'subRouteUID': info['SubRouteUID'],
                     # 子路線名稱
-                    'subRouteName': route['SubRouteName']['Zh_tw'],
+                    'subRouteName': info['SubRouteName']['Zh_tw'],
                     # 停靠站列表
                     'stops': stops,
                 }],
