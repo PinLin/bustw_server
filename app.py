@@ -84,7 +84,10 @@ def get_stop(city, route):
             })
 
         # 在 SubRouteUID 後方加入 Direction
-        bus_stop['SubRouteUID'] += str(bus_stop['Direction'] if 'Direction' in bus_stop else '')
+        try:
+            bus_stop['SubRouteUID'] += str(bus_stop['Direction'])
+        except:
+            pass
 
         # 確認是否已經有該 UID 的資料
         exist = -1
@@ -116,23 +119,25 @@ def get_stop(city, route):
                 })
         else:
             # 新增該路線的資料
-            result.append({
-                # 路線辨識碼
-                'routeUID': bus_stop['RouteUID'],
-                # 路線名稱
-                'routeName': bus_stop['RouteName']['Zh_tw'],
-                # 城市
-                'city': bus_stop['City'],
-                # 子路線
-                'subRoutes': [{
-                    # 子路線辨識碼
-                    'subRouteUID': bus_stop['SubRouteUID'],
-                    # 子路線名稱
-                    'subRouteName': bus_stop['SubRouteName']['Zh_tw'],
-                    # 停靠站列表
-                    'stops': stops,
-                }],
-            })
+            result.append({})
+            # 路線辨識碼
+            result[-1]['routeUID'] = bus_stop['RouteUID']
+            # 路線名稱
+            result[-1]['routeName'] = bus_stop['RouteName']['Zh_tw']
+            # 城市
+            try:
+                result[-1]['city'] = bus_stop['City']
+            except:
+                result[-1]['city'] = city
+            # 子路線
+            result[-1]['subRoutes'] = [{
+                # 子路線辨識碼
+                'subRouteUID': bus_stop['SubRouteUID'],
+                # 子路線名稱
+                'subRouteName': bus_stop['SubRouteName']['Zh_tw'],
+                # 停靠站列表
+                'stops': stops,
+            }]
 
     # 取得該城市符合條件的所有路線的到站時間
     try:
