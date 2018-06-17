@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
+import sys
 import json
 import time
 import hmac
@@ -47,6 +48,8 @@ class PTX:
                 'Accept': 'application/json',
                 'Accept-Encoding': 'gzip, deflate',
             }
+            # 提示訊息
+            print("PTX - [Warning] You haven't enter App ID and App Key.", file=sys.stderr)
 
     # 取得特定縣市路線基本資訊
     def bus_route(self, city:str, route_name:str=None, arg:dict={}):
