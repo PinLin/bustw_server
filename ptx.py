@@ -49,7 +49,7 @@ class PTX:
                 'Accept-Encoding': 'gzip, deflate',
             }
             # 提示訊息
-            print("PTX - [Warning] You haven't enter App ID and App Key.", file=sys.stderr)
+            print("PTX - [⚠️ Warning] You haven't enter App ID and App Key.", file=sys.stderr)
 
     # 取得特定縣市路線基本資訊
     def bus_route(self, city:str, route_name:str=None, arg:dict={}):
@@ -68,6 +68,8 @@ class PTX:
         for item in arg.items():
             url += '&{key}={value}'.format(key=item[0], value=item[1])
         
+        # 提示訊息
+        print("PTX - [ℹ️ Info] Getting bus_route...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
         # 取得資料
@@ -75,8 +77,12 @@ class PTX:
 
         # 判斷請求是否成功
         if response.status_code != 200:
+            # 提示訊息
+            print("PTX - [❌ Error] Failed to Get bus_route. Code:", response.status_code, file=sys.stderr)
+            # 回傳
             return []
         else:
+            # 回傳
             return json.loads(response.text)
 
     # 取得特定縣市路線站牌資訊
@@ -96,6 +102,8 @@ class PTX:
         for item in arg.items():
             url += '&{key}={value}'.format(key=item[0], value=item[1])
         
+        # 提示訊息
+        print("PTX - [ℹ️ Info] Getting bus_stop...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
         # 取得資料
@@ -103,6 +111,9 @@ class PTX:
         
         # 判斷請求是否成功
         if response.status_code != 200:
+            # 提示訊息
+            print("PTX - [❌ Error] Failed to Get bus_stop. Code:", response.status_code, file=sys.stderr)
+            # 回傳
             return []
         else:
             return json.loads(response.text)
@@ -124,6 +135,8 @@ class PTX:
         for item in arg.items():
             url += '&{key}={value}'.format(key=item[0], value=item[1])
         
+        # 提示訊息
+        print("PTX - [ℹ️ Info] Getting bus_time...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
         # 取得資料
@@ -131,6 +144,9 @@ class PTX:
         
         # 判斷請求是否成功
         if response.status_code != 200:
+            # 提示訊息
+            print("PTX - [❌ Error] Failed to Get bus_time. Code:", response.status_code, file=sys.stderr)
+            # 回傳
             return []
         else:
             return json.loads(response.text)
@@ -152,6 +168,8 @@ class PTX:
         for item in arg.items():
             url += '&{key}={value}'.format(key=item[0], value=item[1])
         
+        # 提示訊息
+        print("PTX - [ℹ️ Info] Getting bus_real...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
         # 取得資料
@@ -159,6 +177,9 @@ class PTX:
         
         # 判斷請求是否成功
         if response.status_code != 200:
+            # 提示訊息
+            print("PTX - [❌ Error] Failed to Get bus_real. Code:", response.status_code, file=sys.stderr)
+            # 回傳
             return []
         else:
             return json.loads(response.text)
