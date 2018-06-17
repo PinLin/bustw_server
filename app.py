@@ -7,11 +7,12 @@ import json
 
 from ptx import PTX
 
-# 初始化
+# 初始化 PTX
 api = PTX({
     'id': "",
     'key': "",
 })
+# 初始化 Flask
 app = Flask(__name__)
 
 @app.route('/')
