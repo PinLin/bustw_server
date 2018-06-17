@@ -110,14 +110,19 @@ def get_now(city, route):
             for bus_real in bus_reals:
                 if bus_real['StopUID'] == stop['StopUID']:
                     # 新公車
-                    stop_list[-1]['buses'].append({
-                        # 車牌號碼
-                        'plateNumb': bus_real['PlateNumb'],
-                        # 行車狀態
-                        'busStatus': bus_real['BusStatus'],
-                        # 進站離站
-                        'a2EventType': bus_real['A2EventType'],
-                    })
+                    stop_list[-1]['buses'].append({})
+                    # 車牌號碼
+                    stop_list[-1]['buses'][-1]['plateNumb'] = bus_real['PlateNumb']
+                    # 行車狀態
+                    try:
+                        stop_list[-1]['buses'][-1]['busStatus'] = bus_real['BusStatus']
+                    except:
+                        stop_list[-1]['buses'][-1]['busStatus'] = 0
+                    # 進站離站
+                    try:
+                        stop_list[-1]['buses'][-1]['a2EventType'] = bus_real['A2EventType']
+                    except:
+                        stop_list[-1]['buses'][-1]['a2EventType'] = 0
             
         try:
             # 確認是否已經有該 UID 的資料
