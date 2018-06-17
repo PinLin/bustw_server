@@ -8,29 +8,29 @@ import hashlib
 import base64
 
 class PTX:
-    def __init__(self, timeout:int=5, appid:str='', appkey:str=''):
+    def __init__(self, timeout:int=5, app_id:str='', app_key:str=''):
         # 設定 request 最高等待秒數
         self.timeout = timeout
         # 設定 App ID
-        self.appid = appid
+        self.app_id = app_id
         # 設定 App Key
-        self.appkey = appkey
+        self.app_key = app_key
         # 設定 request 的 headers
         self.headers = {}
     
     # 驗證 headers
     def verify_headers(self):
-        if self.appid != '' and self.appkey != '':
+        if self.app_id != '' and self.app_key != '':
             # 現在時間
             now = time.strftime('%a, %d %b %Y %H:%M:%S', time.gmtime()) + ' GMT'
             # 簽名
-            digester = hmac.new(bytes(self.appkey, 'utf-8'), bytes('x-date: ' + now, 'utf-8'), hashlib.sha1).digest()
+            digester = hmac.new(bytes(self.app_key, 'utf-8'), bytes('x-date: ' + now, 'utf-8'), hashlib.sha1).digest()
             signature = str(base64.b64encode(digester), 'utf-8')
             
             # 產生有 HMAC 簽章的 headers
             self.headers = {
                 'Accept': 'application/json',
-                'Authorization': 'hmac username="' + self.appid + '", algorithm="hmac-sha1", headers="x-date", signature="' + signature + '"',
+                'Authorization': 'hmac username="' + self.app_id + '", algorithm="hmac-sha1", headers="x-date", signature="' + signature + '"',
                 'x-date': now,
                 'Accept-Encoding': 'gzip, deflate',
             }
