@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def get_intro():
-    return '<meta http-equiv="refresh" content="0; url=https://gitea.ntut.com.tw/PinLin/bustw_server">'
+    return '<meta http-equiv="refresh" content="0; url=https://github.com/PinLin/bustw_server">'
 
 @app.route('/info/<city>/')
 def get_info(city):
