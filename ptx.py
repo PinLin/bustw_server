@@ -2,6 +2,10 @@
 
 import requests
 import json
+import time
+import hmac
+import hashlib
+import base64
 
 class PTX:
     def __init__(self, timeout:int=5, appid:str='', appkey:str=''):
@@ -17,8 +21,19 @@ class PTX:
     # 驗證 headers
     def verify_headers(self):
         if self.appid != '' and self.appkey != '':
+            # 現在時間
+            now = time.strftime('%a, %d %b %Y %H:%M:%S', time.gmtime()) + ' GMT'
+            # 簽名
+            digester = hmac.new(bytes(self.appkey, 'utf-8'), bytes('x-date: ' + now, 'utf-8'), hashlib.sha1).digest()
+            signature = str(base64.b64encode(digester), 'utf-8')
+            
             # 產生有 HMAC 簽章的 headers
-            pass
+            self.headers = {
+                'Accept': 'application/json',
+                'Authorization': 'hmac username="' + self.appid + '", algorithm="hmac-sha1", headers="x-date", signature="' + signature + '"',
+                'x-date': now,
+                'Accept-Encoding': 'gzip, deflate',
+            }
         else:
             # 使用測試用的 headers
             self.headers = {
@@ -48,7 +63,7 @@ class PTX:
         self.verify_headers()
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
-        
+        print(json.loads(response.text))
         # 判斷請求是否成功
         if response.status_code != 200:
             return []
