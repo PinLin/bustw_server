@@ -53,7 +53,7 @@ def get_info(city):
             result[-1]['destinationStopName'] = ''
 
     # 回傳
-    return Response(json.dumps({'routes': result}, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps({'routes': result}, ensure_ascii=False), content_type='application/json; charset=utf-8')
 
 @app.route('/now/<city>/<route>/')
 def get_now(city, route):
@@ -161,7 +161,7 @@ def get_now(city, route):
             }]
             
     # 回傳
-    return Response(json.dumps({'routes': result}, ensure_ascii=False), mimetype='application/json')
+    return Response(json.dumps({'routes': result}, ensure_ascii=False), content_type='application/json; charset=utf-8')
 
 def main():
     app.run(port=65432)
