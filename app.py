@@ -61,17 +61,17 @@ def get_now(city, route):
     with open(sys.path[0] + '/map.json', 'r') as f:
         maps = json.load(f)
 
-    # 取得該城市符合條件的所有路線
+    # 取得該城市符合條件的所有路線站牌資料
     try:
         bus_stops = api.bus_stop(maps[city], route, arg={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
     except:
         bus_stops = []
-    # 取得該城市符合條件的所有路線
+    # 取得該城市符合條件的所有路線到站估計資料
     try:
         bus_times = api.bus_time(maps[city], route, arg={'$select': 'StopUID,EstimateTime,StopStatus'})
     except:
         bus_times = []
-    # 取得該城市符合條件的所有路線
+    # 取得該城市符合條件的所有路線公車定位資料
     try:
         bus_reals = api.bus_real(maps[city], route, arg={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
     except:
