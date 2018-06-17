@@ -168,7 +168,7 @@ def get_now(city, route):
     return Response(json.dumps({'routes': result}, ensure_ascii=False), content_type='application/json; charset=utf-8')
 
 def main():
-    app.run(port=65432)
+    app.run(port=65432, threaded=True)
 
 if __name__ == '__main__':
     main()
