@@ -28,7 +28,7 @@ def get_info(city):
     # 取得該城市符合條件的所有路線
     try:
         bus_routes = api.bus_route(maps[city], arg={'$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
-    except:
+    except KeyError:
         bus_routes = []
 
     # 處理資料
@@ -43,17 +43,17 @@ def get_info(city):
         # 城市
         try:
             result[-1]['city'] = bus_route['City']
-        except:
+        except KeyError:
             result[-1]['city'] = city
         # 起站
         try:
             result[-1]['departureStopName'] = bus_route['DepartureStopNameZh']
-        except:
+        except KeyError:
             result[-1]['departureStopName'] = ''
         # 終站
         try:
             result[-1]['destinationStopName'] = bus_route['DestinationStopNameZh']
-        except:
+        except KeyError:
             result[-1]['destinationStopName'] = ''
 
     # 回傳
@@ -68,17 +68,17 @@ def get_now(city, route):
     # 取得該城市符合條件的所有路線站牌資料
     try:
         bus_stops = api.bus_stop(maps[city], route, arg={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
-    except:
+    except KeyError:
         bus_stops = []
     # 取得該城市符合條件的所有路線到站估計資料
     try:
         bus_times = api.bus_time(maps[city], route, arg={'$select': 'StopUID,EstimateTime,StopStatus'})
-    except:
+    except KeyError:
         bus_times = []
     # 取得該城市符合條件的所有路線公車定位資料
     try:
         bus_reals = api.bus_real(maps[city], route, arg={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
-    except:
+    except KeyError:
         bus_reals = []
 
     # 處理資料
@@ -87,7 +87,7 @@ def get_now(city, route):
         # 在 SubRouteUID 後方加入 Direction
         try:
             bus_stop['SubRouteUID'] += str(bus_stop['Direction'])
-        except:
+        except KeyError:
             pass
 
         # 記錄停靠站
@@ -102,12 +102,12 @@ def get_now(city, route):
             # 停靠站到站時間
             try:
                 stop_list[-1]['estimateTime'] = bus_times[list(map(lambda x: x['StopUID'], bus_times)).index(stop['StopUID'])]['EstimateTime']
-            except:
+            except KeyError:
                 stop_list[-1]['estimateTime'] = -1
             # 停靠站停靠狀態
             try:
                 stop_list[-1]['stopStatus'] = bus_times[list(map(lambda x: x['StopUID'], bus_times)).index(stop['StopUID'])]['StopStatus']
-            except:
+            except KeyError:
                 stop_list[-1]['stopStatus'] = 0
             # 車牌號碼
             stop_list[-1]['buses'] = []
@@ -120,12 +120,12 @@ def get_now(city, route):
                     # 行車狀態
                     try:
                         stop_list[-1]['buses'][-1]['busStatus'] = bus_real['BusStatus']
-                    except:
+                    except KeyError:
                         stop_list[-1]['buses'][-1]['busStatus'] = 0
                     # 進站離站
                     try:
                         stop_list[-1]['buses'][-1]['a2EventType'] = bus_real['A2EventType']
-                    except:
+                    except KeyError:
                         stop_list[-1]['buses'][-1]['a2EventType'] = 0
             
         try:
@@ -152,7 +152,7 @@ def get_now(city, route):
             # 城市
             try:
                 result[-1]['city'] = bus_stop['City']
-            except:
+            except KeyError:
                 result[-1]['city'] = city
             # 子路線
             result[-1]['subRoutes'] = [{
