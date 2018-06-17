@@ -25,7 +25,6 @@ class PTX:
                 'User-Agent': 'Mozilla',
                 'Accept': 'application/json',
                 'Accept-Encoding': 'gzip, deflate',
-                'Accept-Language': 'zh-TW,zh;q=0.8,en-US;q=0.5,en;q=0.3',
             }
 
     # 取得特定縣市路線基本資訊
