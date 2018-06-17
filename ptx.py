@@ -69,7 +69,7 @@ class PTX:
         self.verify_headers()
         # 取得資料
         response = requests.get(url, headers=self.headers, timeout=self.timeout)
-        print(json.loads(response.text))
+
         # 判斷請求是否成功
         if response.status_code != 200:
             return []
