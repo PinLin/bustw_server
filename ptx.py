@@ -72,8 +72,13 @@ class PTX:
         print("PTX - [ℹ️ Info] Getting bus_route...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
-        # 取得資料
-        response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        # 向 PTX 平台取得資料
+        try:
+            # 取得資料
+            response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        except requests.exceptions.Timeout:
+            # 提示訊息
+            print("PTX - [❌ Error] bus_route Timeout", file=sys.stderr)
 
         # 判斷請求是否成功
         if response.status_code != 200:
@@ -106,8 +111,13 @@ class PTX:
         print("PTX - [ℹ️ Info] Getting bus_stop...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
-        # 取得資料
-        response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        # 向 PTX 平台取得資料
+        try:
+            # 取得資料
+            response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        except requests.exceptions.Timeout:
+            # 提示訊息
+            print("PTX - [❌ Error] bus_stop Timeout", file=sys.stderr)
         
         # 判斷請求是否成功
         if response.status_code != 200:
@@ -139,8 +149,13 @@ class PTX:
         print("PTX - [ℹ️ Info] Getting bus_time...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
-        # 取得資料
-        response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        # 向 PTX 平台取得資料
+        try:
+            # 取得資料
+            response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        except requests.exceptions.Timeout:
+            # 提示訊息
+            print("PTX - [❌ Error] bus_time Timeout", file=sys.stderr)
         
         # 判斷請求是否成功
         if response.status_code != 200:
@@ -172,8 +187,13 @@ class PTX:
         print("PTX - [ℹ️ Info] Getting bus_real...", file=sys.stderr)
         # 驗證 headers
         self.verify_headers()
-        # 取得資料
-        response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        # 向 PTX 平台取得資料
+        try:
+            # 取得資料
+            response = requests.get(url, headers=self.headers, timeout=self.timeout)
+        except requests.exceptions.Timeout:
+            # 提示訊息
+            print("PTX - [❌ Error] bus_real Timeout", file=sys.stderr)
         
         # 判斷請求是否成功
         if response.status_code != 200:
