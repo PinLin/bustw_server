@@ -8,9 +8,7 @@ import hashlib
 import base64
 
 class PTX:
-    def __init__(self, timeout:int=5, app:dict={}):
-        # 設定 request 最高等待秒數
-        self.timeout = timeout
+    def __init__(self, app:dict={}, timeout:int=5):
         # 設定 App ID
         try:
             self.app_id = app['id']
@@ -23,6 +21,8 @@ class PTX:
             self.app_key = ''
         # 設定 request 的 headers
         self.headers = {}
+        # 設定 request 最高等待秒數
+        self.timeout = timeout
     
     # 驗證 headers
     def verify_headers(self):
