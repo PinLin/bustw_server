@@ -89,9 +89,6 @@ def get_now(city, route):
         # 記錄停靠站
         stop_list = []
         for stop in bus_stop['Stops']:
-            # 不停靠的站不顯示
-            if '不停靠' in stop['StopName']['Zh_tw']:
-                continue
             # 新增停靠站
             stop_list.append({})
             # 停靠站辨識碼
