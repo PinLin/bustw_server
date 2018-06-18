@@ -17,7 +17,7 @@ api = PTX({
 app = Flask(__name__)
 
 @app.route('/')
-def get_intro():
+def introduce():
     return '<meta http-equiv="refresh" content="0; url=https://github.com/PinLin/bustw_server">'
 
 @app.route('/info/<city>/')
