@@ -27,7 +27,7 @@ bus tracker for Taiwanese
     }
     ```
 
-> /now/{City}/{Route}
+> /stop/{City}/{Route}
 
 1. 取得特定縣市之特定路線動態資料。
 2. 參數列表：

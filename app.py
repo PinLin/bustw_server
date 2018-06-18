@@ -59,8 +59,8 @@ def get_info(city):
     # 回傳
     return Response(json.dumps({'routes': result}, ensure_ascii=False), content_type='application/json; charset=utf-8')
 
-@app.route('/now/<city>/<route>/')
-def get_now(city, route):
+@app.route('/stop/<city>/<route>/')
+def get_stop(city, route):
     # 讀取城市對應表
     with open(sys.path[0] + '/map.json', 'r') as f:
         maps = json.load(f)
