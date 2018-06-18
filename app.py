@@ -5,6 +5,7 @@ from pprint import pprint
 import sys
 import json
 
+from taiwan import MAPS
 from ptx import PTX
 
 # 初始化 PTX
@@ -21,13 +22,9 @@ def get_intro():
 
 @app.route('/info/<city>/')
 def get_info(city):
-    # 讀取城市對應表
-    with open(sys.path[0] + '/map.json', 'r') as f:
-        maps = json.load(f)
-
     # 取得該城市符合條件的所有路線
     try:
-        bus_routes = api.bus_route(maps[city], arg={'$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
+        bus_routes = api.bus_route(MAPS[city], arg={'$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
     except KeyError:
         bus_routes = []
 
@@ -61,23 +58,19 @@ def get_info(city):
 
 @app.route('/stop/<city>/<route>/')
 def get_stop(city, route):
-    # 讀取城市對應表
-    with open(sys.path[0] + '/map.json', 'r') as f:
-        maps = json.load(f)
-
     # 取得該城市符合條件的所有路線站牌資料
     try:
-        bus_stops = api.bus_stop(maps[city], route, arg={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
+        bus_stops = api.bus_stop(MAPS[city], route, arg={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
     except KeyError:
         bus_stops = []
     # 取得該城市符合條件的所有路線到站估計資料
     try:
-        bus_times = api.bus_time(maps[city], route, arg={'$select': 'StopUID,EstimateTime,StopStatus'})
+        bus_times = api.bus_time(MAPS[city], route, arg={'$select': 'StopUID,EstimateTime,StopStatus'})
     except KeyError:
         bus_times = []
     # 取得該城市符合條件的所有路線公車定位資料
     try:
-        bus_reals = api.bus_real(maps[city], route, arg={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
+        bus_reals = api.bus_real(MAPS[city], route, arg={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
     except KeyError:
         bus_reals = []
 
