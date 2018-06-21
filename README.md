@@ -56,7 +56,7 @@ bus tracker for Taiwanese
                   "stopStatus": "Integer",
                   "buses": [
                     {
-                      "plateNumb": "String",
+                      "busNumber": "String",
                       "busStatus": "Integer",
                       "arriving": "Integer"
                     }

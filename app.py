@@ -109,7 +109,7 @@ def get_stop(city, route):
                     # 新公車
                     stop_list[-1]['buses'].append({})
                     # 車牌號碼
-                    stop_list[-1]['buses'][-1]['plateNumb'] = bus_real['PlateNumb']
+                    stop_list[-1]['buses'][-1]['busNumber'] = bus_real['PlateNumb']
                     # 行車狀態
                     try:
                         stop_list[-1]['buses'][-1]['busStatus'] = bus_real['BusStatus']
