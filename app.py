@@ -117,9 +117,9 @@ def get_stop(city, route):
                         stop_list[-1]['buses'][-1]['busStatus'] = 0
                     # 進站離站
                     try:
-                        stop_list[-1]['buses'][-1]['a2EventType'] = bus_real['A2EventType']
+                        stop_list[-1]['buses'][-1]['arriving'] = bus_real['A2EventType']
                     except KeyError:
-                        stop_list[-1]['buses'][-1]['a2EventType'] = 0
+                        stop_list[-1]['buses'][-1]['arriving'] = 0
             
         try:
             # 確認是否已經有該 UID 的資料

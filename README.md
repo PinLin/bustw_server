@@ -58,7 +58,7 @@ bus tracker for Taiwanese
                     {
                       "plateNumb": "String",
                       "busStatus": "Integer",
-                      "a2EventType": "Integer"
+                      "arriving": "Integer"
                     }
                   ]
                 }
