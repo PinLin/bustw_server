@@ -123,9 +123,9 @@ def get_stop(city, route):
             
         try:
             # 確認是否已經有該 UID 的資料
-            exist = (lambda x: x['routeUID'], result).index(bus_stop['RouteUID'])
+            exist = list(map(lambda x: x['routeUID'], result)).index(bus_stop['RouteUID'])
             # 確認是否已經有該 subRouteUID 的資料
-            if not bus_stop['SubRouteUID'] in (lambda x: x['subRouteUID'], result[exist]['subRoutes']):
+            if not bus_stop['SubRouteUID'] in list(map(lambda x: x['subRouteUID'], result[exist]['subRoutes'])):
                 # 沒有該 subRouteUID 的資料所以新增子路線
                 result[exist]['subRoutes'].append({
                     # 子路線辨識碼
