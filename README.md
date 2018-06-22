@@ -4,7 +4,7 @@ bus tracker for Taiwanese
 
 ## API List
 
-> /info/{City}
+> /v1/info/{City}
 
 1. 取得特定縣市之所有路線靜態資料。
 2. 參數列表：
@@ -27,7 +27,7 @@ bus tracker for Taiwanese
     }
     ```
 
-> /stop/{City}/{Route}
+> /v1/stop/{City}/{Route}
 
 1. 取得特定縣市之特定路線動態資料。
 2. 參數列表：

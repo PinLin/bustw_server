@@ -20,7 +20,7 @@ app = Flask(__name__)
 def introduce():
     return '<meta http-equiv="refresh" content="0; url=https://github.com/PinLin/bustw_server">'
 
-@app.route('/info/<city>/')
+@app.route('/v1/info/<city>/')
 def get_info(city):
     # 取得該城市符合條件的所有路線
     try:
@@ -56,7 +56,7 @@ def get_info(city):
     # 回傳
     return Response(json.dumps({'routes': result}, ensure_ascii=False), content_type='application/json; charset=utf-8')
 
-@app.route('/stop/<city>/<route>/')
+@app.route('/v1/stop/<city>/<route>/')
 def get_stop(city, route):
     # 取得該城市符合條件的所有路線站牌資料
     try:
