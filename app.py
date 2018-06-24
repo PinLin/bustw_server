@@ -105,7 +105,7 @@ def get_stop(city, route):
             except KeyError:
                 stop_list[-1]['stopStatus'] = 0
             except ValueError:
-                stop_list[-1]['stopStatus'] = 0
+                stop_list[-1]['stopStatus'] = 1
             # 車牌號碼
             stop_list[-1]['buses'] = []
             for bus_real in bus_reals:
