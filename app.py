@@ -104,6 +104,8 @@ def get_stop(city, route):
                 stop_list[-1]['stopStatus'] = bus_times[list(map(lambda x: x['StopUID'], bus_times)).index(stop['StopUID'])]['StopStatus']
             except KeyError:
                 stop_list[-1]['stopStatus'] = 0
+            except ValueError:
+                stop_list[-1]['stopStatus'] = 0
             # 車牌號碼
             stop_list[-1]['buses'] = []
             for bus_real in bus_reals:
