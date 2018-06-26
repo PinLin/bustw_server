@@ -135,7 +135,7 @@ def get_stop(city, route):
                     # 子路線辨識碼
                     'subRouteUID': bus_stop['SubRouteUID'],
                     # 子路線名稱
-                    'subRouteName': bus_stop['SubRouteName']['Zh_tw'] + "（往" + stop_list[-1]['stopName'] + "）",
+                    'subRouteName': bus_stop['SubRouteName']['Zh_tw'].split('(')[0] + "（往" + stop_list[-1]['stopName'] + "）",
                     # 停靠站列表
                     'stops': stop_list,
                 })
@@ -156,7 +156,7 @@ def get_stop(city, route):
                 # 子路線辨識碼
                 'subRouteUID': bus_stop['SubRouteUID'],
                 # 子路線名稱
-                'subRouteName': bus_stop['SubRouteName']['Zh_tw'] + "（往" + stop_list[-1]['stopName'] + "）",
+                'subRouteName': bus_stop['SubRouteName']['Zh_tw'].split('(')[0] + "（往" + stop_list[-1]['stopName'] + "）",
                 # 停靠站列表
                 'stops': stop_list,
             }]
