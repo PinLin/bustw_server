@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from flask import Flask, request, Response
-from pprint import pprint
 import sys
 import json
 
