@@ -3,7 +3,7 @@
 import sys
 import json
 
-from flask import Flask, request, Response
+from flask import Flask, request, Response, redirect
 
 from taiwan import MAPS
 from ptx import PTX
@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def introduce():
-    return '<meta http-equiv="refresh" content="0; url=https://github.com/PinLin/bustw_server">'
+    return redirect("https://github.com/PinLin/bustw_server")
 
 @app.route('/v1/info/<city>/')
 def get_info(city):
