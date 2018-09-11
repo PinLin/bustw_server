@@ -7,6 +7,13 @@ from flask import Flask, request, Response, redirect
 
 from ptx import PTX
 
+# 初始化 Flask
+app = Flask(__name__)
+
+# 初始化 PTX
+with open(sys.path[0] + '/config.json', 'r') as f:
+    api = PTX(json.load(f))
+
 # 載入縣市名稱對照表
 with open(sys.path[0] + '/taiwan.json', 'r') as f:
     taiwan = json.load(f)
@@ -15,14 +22,6 @@ with open(sys.path[0] + '/taiwan.json', 'r') as f:
         taiwan[city] = taiwan[city]['code']
 
 data = {'taiwan': taiwan}
-
-# 初始化 PTX
-api = PTX({
-    'id': "",
-    'key': "",
-})
-# 初始化 Flask
-app = Flask(__name__)
 
 @app.route('/')
 def introduce():
