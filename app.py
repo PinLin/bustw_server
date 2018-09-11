@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, Response
 import sys
 import json
+
+from flask import Flask, request, Response
 
 from taiwan import MAPS
 from ptx import PTX
