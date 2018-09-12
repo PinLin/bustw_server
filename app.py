@@ -5,7 +5,7 @@ import json
 
 from flask import Flask, request, Response, redirect
 
-from ptx import PTX
+from api.ptx import PTX
 
 # 初始化 Flask
 app = Flask(__name__)
@@ -15,7 +15,7 @@ with open(sys.path[0] + '/config.json', 'r') as f:
     api = PTX(json.load(f))
 
 # 載入縣市名稱對照表
-with open(sys.path[0] + '/taiwan.json', 'r') as f:
+with open(sys.path[0] + '/api/taiwan.json', 'r') as f:
     taiwan = json.load(f)
     # 只保留 API 名稱
     for city in taiwan:
