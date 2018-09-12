@@ -5,7 +5,7 @@ import json
 
 from flask import Flask, request, Response, redirect
 
-from api.ptx import PTX
+from ptx_api.ptx import PTX
 
 # 初始化 Flask
 app = Flask(__name__)
