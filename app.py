@@ -33,8 +33,10 @@ def introduce():
 
 @app.route('/v1/info/<city>/')
 def get_info(city):
-    # 取得該城市符合條件的所有路線
+    """取得該城市符合條件的所有路線"""
+
     try:
+        # 從 PTX 取得資料
         bus_routes = ptx.get("/v2/Bus/Route/{city}".format(city=data['taiwan'][city]),
                              params={'$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
     except KeyError:
@@ -71,20 +73,24 @@ def get_info(city):
 
 @app.route('/v1/stop/<city>/<route>/')
 def get_stop(city, route):
-    # 取得該城市符合條件的所有路線站牌資料
+    """取得該城市符合條件的所有路線站牌資料"""
+
     try:
+        # 從 PTX 取得資料
         bus_stops = ptx.get("/v2/Bus/StopOfRoute/{city}/{route}".format(city=data['taiwan'][city], route=route),
                             params={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
     except KeyError:
         bus_stops = []
     # 取得該城市符合條件的所有路線到站估計資料
     try:
+        # 從 PTX 取得資料
         bus_times = ptx.get("/v2/Bus/EstimatedTimeOfArrival/{city}/{route}".format(city=data['taiwan'][city], route=route),
                             params={'$select': 'StopUID,EstimateTime,StopStatus'})
     except KeyError:
         bus_times = []
     # 取得該城市符合條件的所有路線公車定位資料
     try:
+        # 從 PTX 取得資料
         bus_reals = ptx.get("/v2/Bus/RealTimeNearStop/{city}/{route}".format(city=data['taiwan'][city], route=route),
                             params={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
     except KeyError:
