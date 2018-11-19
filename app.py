@@ -3,16 +3,18 @@
 import sys
 import json
 
-from flask import Flask, request, Response, redirect
+from flask import Flask, request, redirect, Response, jsonify
+from ptx_api import PTX
 
-from ptx_api.ptx import PTX
+# 讀取配置檔
+with open(sys.path[0] + '/config.json', 'r') as f:
+    config = json.load(f)
 
 # 初始化 Flask
 app = Flask(__name__)
 
 # 初始化 PTX
-with open(sys.path[0] + '/config.json', 'r') as f:
-    api = PTX(json.load(f))
+ptx = PTX(config['API']['ID'], config['API']['KEY'])
 
 # 載入縣市名稱對照表
 with open(sys.path[0] + '/taiwan.json', 'r') as f:
@@ -33,8 +35,8 @@ def introduce():
 def get_info(city):
     # 取得該城市符合條件的所有路線
     try:
-        bus_routes = api.bus_route(data['taiwan'][city], arg={
-                                   '$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
+        bus_routes = ptx.get("/v2/Bus/Route/{city}".format(city=data['taiwan'][city]),
+                             params={'$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
     except KeyError:
         bus_routes = []
 
@@ -71,20 +73,20 @@ def get_info(city):
 def get_stop(city, route):
     # 取得該城市符合條件的所有路線站牌資料
     try:
-        bus_stops = api.bus_stop(data['taiwan'][city], route, arg={
-                                 '$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
+        bus_stops = ptx.get("/v2/Bus/StopOfRoute/{city}/{route}".format(city=data['taiwan'][city], route=route),
+                            params={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
     except KeyError:
         bus_stops = []
     # 取得該城市符合條件的所有路線到站估計資料
     try:
-        bus_times = api.bus_time(data['taiwan'][city], route, arg={
-                                 '$select': 'StopUID,EstimateTime,StopStatus'})
+        bus_times = ptx.get("/v2/Bus/EstimatedTimeOfArrival/{city}/{route}".format(city=data['taiwan'][city], route=route),
+                            params={'$select': 'StopUID,EstimateTime,StopStatus'})
     except KeyError:
         bus_times = []
     # 取得該城市符合條件的所有路線公車定位資料
     try:
-        bus_reals = api.bus_real(data['taiwan'][city], route, arg={
-                                 '$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
+        bus_reals = ptx.get("/v2/Bus/RealTimeNearStop/{city}/{route}".format(city=data['taiwan'][city], route=route),
+                            params={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
     except KeyError:
         bus_reals = []
 
