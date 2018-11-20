@@ -24,12 +24,12 @@ with open(sys.path[0] + '/taiwan.json', 'r') as f:
 data = {'taiwan': taiwan}
 
 
-@app.route('/v1/')
+@app.route('/v1/', strict_slashes=False)
 def welcome():
     return jsonify({'message': "Welcome to bustw_server!"})
 
 
-@app.route('/v1/info/<city>/')
+@app.route('/v1/info/<city>/', strict_slashes=False)
 def get_info(city):
     """取得該城市符合條件的所有路線"""
 
@@ -69,7 +69,7 @@ def get_info(city):
     return jsonify({'routes': result})
 
 
-@app.route('/v1/stop/<city>/<route>/')
+@app.route('/v1/stop/<city>/<route>/', strict_slashes=False)
 def get_stop(city, route):
     """取得該城市符合條件的所有路線站牌資料"""
 
