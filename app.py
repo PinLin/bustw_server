@@ -191,7 +191,7 @@ def get_stop(city, route):
 
 
 def main():
-    app.run(port=65432, threaded=True)
+    app.run(debug=True, threaded=True)
 
 
 if __name__ == '__main__':
