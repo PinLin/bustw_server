@@ -7,11 +7,13 @@ from flask import Flask, request, redirect, Response, jsonify
 from ptx_api import PTX
 
 from city import city_api
+from info import info_api
 import config
 
 # 初始化 Flask
 app = Flask(__name__)
 app.register_blueprint(city_api)
+app.register_blueprint(info_api)
 
 # 初始化 PTX
 ptx = PTX(config.API_ID, config.API_KEY)
@@ -29,46 +31,6 @@ data = {'taiwan': taiwan}
 @app.route('/v1/', strict_slashes=False)
 def welcome():
     return jsonify({'message': "Welcome to bustw_server!"})
-
-
-@app.route('/v1/info/<city>/', strict_slashes=False)
-def get_info(city):
-    """取得該城市符合條件的所有路線"""
-
-    try:
-        # 從 PTX 取得資料
-        bus_routes = ptx.get("/v2/Bus/Route/{city}".format(city=data['taiwan'][city]),
-                             params={'$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
-    except KeyError:
-        bus_routes = []
-
-    # 處理資料
-    result = []
-    for bus_route in bus_routes:
-        # 只留下需要的資料
-        result.append({})
-        # 路線辨識碼
-        result[-1]['routeUID'] = bus_route['RouteUID']
-        # 路線名稱
-        result[-1]['routeName'] = bus_route['RouteName']['Zh_tw']
-        # 城市
-        try:
-            result[-1]['city'] = bus_route['City']
-        except KeyError:
-            result[-1]['city'] = city
-        # 起站
-        try:
-            result[-1]['departureStopName'] = bus_route['DepartureStopNameZh']
-        except KeyError:
-            result[-1]['departureStopName'] = ''
-        # 終站
-        try:
-            result[-1]['destinationStopName'] = bus_route['DestinationStopNameZh']
-        except KeyError:
-            result[-1]['destinationStopName'] = ''
-
-    # 回傳
-    return jsonify({'routes': result})
 
 
 @app.route('/v1/stop/<city>/<route>/', strict_slashes=False)
