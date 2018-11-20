@@ -15,7 +15,7 @@ app = Flask(__name__)
 ptx = PTX(config.API_ID, config.API_KEY)
 
 # 載入縣市名稱對照表
-with open(sys.path[0] + '/taiwan.json', 'r') as f:
+with open(sys.path[0] + '/city.json', 'r') as f:
     taiwan = json.load(f)
     # 只保留 API 名稱
     for city in taiwan:
