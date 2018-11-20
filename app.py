@@ -27,7 +27,7 @@ data = {'taiwan': taiwan}
 
 
 @app.route('/')
-def introduce():
+def get_root():
     return redirect("https://github.com/PinLin/bustw_server")
 
 
