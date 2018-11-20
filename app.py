@@ -66,7 +66,7 @@ def get_info(city):
             result[-1]['destinationStopName'] = ''
 
     # 回傳
-    return Response(json.dumps({'routes': result}, ensure_ascii=False), content_type='application/json; charset=utf-8')
+    return jsonify({'routes': result})
 
 
 @app.route('/v1/stop/<city>/<route>/')
@@ -185,7 +185,7 @@ def get_stop(city, route):
             }]
 
     # 回傳
-    return Response(json.dumps({'routes': result}, ensure_ascii=False), content_type='application/json; charset=utf-8')
+    return jsonify({'routes': result})
 
 
 def main():
