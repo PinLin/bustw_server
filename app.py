@@ -24,7 +24,7 @@ with open(sys.path[0] + '/taiwan.json', 'r') as f:
 data = {'taiwan': taiwan}
 
 
-@app.route('/')
+@app.route('/v1/')
 def welcome():
     return jsonify({'message': "Welcome to bustw_server!"})
 
