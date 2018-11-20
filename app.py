@@ -6,10 +6,12 @@ import json
 from flask import Flask, request, redirect, Response, jsonify
 from ptx_api import PTX
 
+from city import city_api
 import config
 
 # 初始化 Flask
 app = Flask(__name__)
+app.register_blueprint(city_api)
 
 # 初始化 PTX
 ptx = PTX(config.API_ID, config.API_KEY)
