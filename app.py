@@ -25,8 +25,8 @@ data = {'taiwan': taiwan}
 
 
 @app.route('/')
-def get_root():
-    return redirect("https://github.com/PinLin/bustw_server")
+def welcome():
+    return jsonify({'message': "Welcome to bustw_server!"})
 
 
 @app.route('/v1/info/<city>/')
