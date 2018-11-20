@@ -6,15 +6,13 @@ import json
 from flask import Flask, request, redirect, Response, jsonify
 from ptx_api import PTX
 
-# 讀取配置檔
-with open(sys.path[0] + '/config.json', 'r') as f:
-    config = json.load(f)
+import config
 
 # 初始化 Flask
 app = Flask(__name__)
 
 # 初始化 PTX
-ptx = PTX(config['API']['ID'], config['API']['KEY'])
+ptx = PTX(config.API_ID, config.API_KEY)
 
 # 載入縣市名稱對照表
 with open(sys.path[0] + '/taiwan.json', 'r') as f:
