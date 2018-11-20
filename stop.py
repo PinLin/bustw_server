@@ -37,14 +37,14 @@ def get_routes_stop(city, route):
     # 取得該城市符合條件的所有路線到站估計資料
     try:
         # 從 PTX 取得資料
-        bus_times = ptx.get("/v2/Bus/EstimatedTimeOfArrival/{city}/{route}".format(city=data['taiwan'][city], route=route),
+        bus_times = ptx.get("/v2/Bus/EstimatedTimeOfArrival/{city}/{route}".format(city=cities[city], route=route),
                             params={'$select': 'StopUID,EstimateTime,StopStatus'})
     except KeyError:
         bus_times = []
     # 取得該城市符合條件的所有路線公車定位資料
     try:
         # 從 PTX 取得資料
-        bus_reals = ptx.get("/v2/Bus/RealTimeNearStop/{city}/{route}".format(city=data['taiwan'][city], route=route),
+        bus_reals = ptx.get("/v2/Bus/RealTimeNearStop/{city}/{route}".format(city=cities[city], route=route),
                             params={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
     except KeyError:
         bus_reals = []
