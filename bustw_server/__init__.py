@@ -9,11 +9,6 @@ from .route import v1_api
 app = Flask(__name__)
 
 
-@app.route('/v1/', strict_slashes=False)
-def welcome():
-    return jsonify({'message': "Welcome to bustw_server!"})
-
-
 # 註冊藍圖
 app.register_blueprint(v1_api)
 

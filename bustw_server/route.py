@@ -5,6 +5,11 @@ from flask import Blueprint, jsonify
 v1_api = Blueprint('v1', __name__)
 
 
+@v1_api.route('/v1/', strict_slashes=False)
+def v1():
+    return jsonify({'message': "Welcome to bustw_server!"})
+
+
 @v1_api.route('/v1/city/', strict_slashes=False)
 def v1_city():
     """取得可用的城市列表"""
