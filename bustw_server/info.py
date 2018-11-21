@@ -6,10 +6,10 @@ import json
 from flask import Blueprint, jsonify
 from ptx_api import PTX
 
-import config
+from .config import API_ID, API_KEY
 
 # 載入縣市資料對照表
-with open(sys.path[0] + '/taiwan.json', 'r') as f:
+with open(sys.path[0] + '/bustw_server/taiwan.json', 'r') as f:
     data = json.load(f)
 
 # 取得縣市代碼對照表
@@ -18,7 +18,7 @@ for key in data:
     cities[key] = data[key]['code']
 
 # 初始化 PTX
-ptx = PTX(config.API_ID, config.API_KEY)
+ptx = PTX(API_ID, API_KEY)
 
 # 初始化 info 藍圖
 info_api = Blueprint('info', __name__)

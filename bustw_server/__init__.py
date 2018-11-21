@@ -5,9 +5,9 @@ import json
 
 from flask import Flask, jsonify
 
-from city import city_api
-from info import info_api
-from stop import stop_api
+from .city import city_api
+from .info import info_api
+from .stop import stop_api
 # from route import v1_api
 
 # 初始化 Flask

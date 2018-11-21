@@ -6,7 +6,7 @@ import json
 from flask import Blueprint, jsonify
 
 # 載入縣市資料對照表
-with open(sys.path[0] + '/taiwan.json', 'r') as f:
+with open(sys.path[0] + '/bustw_server/taiwan.json', 'r') as f:
     data = json.load(f)
 
 # 取得縣市中英文名稱
