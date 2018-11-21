@@ -8,6 +8,7 @@ from flask import Flask, jsonify
 from city import city_api
 from info import info_api
 from stop import stop_api
+# from route import v1_api
 
 # 初始化 Flask
 app = Flask(__name__)
@@ -22,6 +23,7 @@ def welcome():
 app.register_blueprint(city_api)
 app.register_blueprint(info_api)
 app.register_blueprint(stop_api)
+# app.register_blueprint(v1_api)
 
 
 def main():
