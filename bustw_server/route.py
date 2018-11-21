@@ -40,7 +40,7 @@ def v1_info(city):
     from flask import Blueprint, jsonify
     from ptx_api import PTX
 
-    from .config import API_ID, API_KEY
+    from .config import PTX_ID, PTX_KEY
 
     # 載入縣市資料對照表
     with open(sys.path[0] + '/bustw_server/taiwan.json', 'r') as f:
@@ -52,7 +52,7 @@ def v1_info(city):
         cities[key] = data[key]['code']
 
     # 初始化 PTX
-    ptx = PTX(API_ID, API_KEY)
+    ptx = PTX(PTX_ID, PTX_KEY)
 
     try:
         # 從 PTX 取得資料
@@ -102,7 +102,7 @@ def v1_stop(city, route):
     from flask import Blueprint, jsonify
     from ptx_api import PTX
 
-    from .config import API_ID, API_KEY
+    from .config import PTX_ID, PTX_KEY
 
     # 載入縣市資料對照表
     with open(sys.path[0] + '/bustw_server/taiwan.json', 'r') as f:
@@ -114,7 +114,7 @@ def v1_stop(city, route):
         cities[key] = data[key]['code']
 
     # 初始化 PTX
-    ptx = PTX(API_ID, API_KEY)
+    ptx = PTX(PTX_ID, PTX_KEY)
 
     try:
         # 從 PTX 取得資料
