@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from .api import v1_root
 
 
 # 初始化 city 藍圖
@@ -6,8 +7,9 @@ v1_api = Blueprint('v1', __name__)
 
 
 @v1_api.route('/v1/', strict_slashes=False)
-def v1():
-    return jsonify({'message': "Welcome to bustw_server!"})
+def root():
+    """顯示歡迎訊息"""
+    return jsonify(v1_root.main())
 
 
 @v1_api.route('/v1/city/', strict_slashes=False)
