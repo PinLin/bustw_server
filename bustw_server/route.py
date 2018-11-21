@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from flask import Blueprint, jsonify
 
 
@@ -90,7 +88,6 @@ def v1_info(city):
 
     # 回傳
     return jsonify({'routes': result})
-
 
 
 @v1_api.route('/v1/stop/<city>/<route>/', strict_slashes=False)
