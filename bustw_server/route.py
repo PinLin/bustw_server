@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from .api import v1_root
+from .api import v1_root, v1_city
 
 
 # 初始化 city 藍圖
@@ -13,30 +13,13 @@ def root():
 
 
 @v1_api.route('/v1/city/', strict_slashes=False)
-def v1_city():
+def city():
     """取得可用的城市列表"""
-    pass
-
-    # TODO: 要拆開
-    import sys
-    import json
-
-    from flask import Blueprint, jsonify
-
-    # 載入縣市資料對照表
-    with open(sys.path[0] + '/bustw_server/taiwan.json', 'r') as f:
-        data = json.load(f)
-
-    # 取得縣市中英文名稱
-    cities = []
-    for key in data:
-        cities.append({'key': key, 'name': data[key]['name']})
-
-    return jsonify({'cities': cities})
+    return jsonify(v1_city.main())
 
 
 @v1_api.route('/v1/info/<city>/', strict_slashes=False)
-def v1_info(city):
+def info(city):
     """取得該城市符合條件的所有路線"""
     pass
 
