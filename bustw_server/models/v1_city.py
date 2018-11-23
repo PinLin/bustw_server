@@ -1,6 +1,6 @@
 import sys
 
-from .utils import city
+from ..utils import city
 
 
 def main() -> dict:
