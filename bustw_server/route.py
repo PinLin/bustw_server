@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from .models import v1_root, v1_city, v1_info, v1_stop
+from .api import v1_root, v1_city, v1_info, v1_stop
 
 
 # 初始化 city 藍圖
