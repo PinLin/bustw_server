@@ -5,7 +5,7 @@ from ..utils.taiwan import taiwan
 from ..config import PTX_ID, PTX_KEY
 
 
-def main(city: str) -> dict:
+def main(city: str, route: str) -> dict:
     cities = {}
 
     data = taiwan.cities
@@ -22,28 +22,23 @@ def main(city: str) -> dict:
 
     result = []
     for bus_route in bus_routes:
-        temp = {}
+        temp = {
+            # 路線辨識碼
+            'routeUID': bus_route['RouteUID'],
+            # 路線名稱
+            'routeName': bus_route['RouteName']['Zh_tw'],
+            # 城市名稱
+            'city': bus_route.get('City') or city,
+            # 起站名稱
+            'departureStopName': bus_route.get('DepartureStopNameZh') or '',
+            # 終站名稱
+            'destinationStopName': bus_route.get('DestinationStopNameZh') or '',
+        }
 
-        # 路線辨識碼
-        temp['routeUID'] = bus_route['RouteUID']
-        # 路線名稱
-        temp['routeName'] = bus_route['RouteName']['Zh_tw']
-        # 城市名稱
-        try:
-            temp['city'] = bus_route['City']
-        except KeyError:
-            temp['city'] = city
-        # 起站名稱
-        try:
-            temp['departureStopName'] = bus_route['DepartureStopNameZh']
-        except KeyError:
-            temp['departureStopName'] = ''
-        # 終站名稱
-        try:
-            temp['destinationStopName'] = bus_route['DestinationStopNameZh']
-        except KeyError:
-            temp['destinationStopName'] = ''
-
+        # 如果有限制路線名稱就篩選
+        if route != None and not route in temp['routeName']:
+            continue
+        
         result.append(temp)
 
     # 回傳

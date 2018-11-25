@@ -18,10 +18,11 @@ def city():
     return jsonify(v1_city.main())
 
 
-@v1_api.route('/v1/info/<city>/', strict_slashes=False)
-def info(city):
+@v1_api.route('/v1/info/<city>/', defaults={'route': None}, strict_slashes=False)
+@v1_api.route('/v1/info/<city>/<route>', strict_slashes=False)
+def info(city, route):
     """取得該城市符合條件的所有路線"""
-    return jsonify(v1_info.main(city))
+    return jsonify(v1_info.main(city, route))
 
 
 @v1_api.route('/v1/stop/<city>/<route>/', strict_slashes=False)
