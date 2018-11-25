@@ -9,35 +9,31 @@ def main(city: str, route: str) -> dict:
     cities = {}
 
     data = taiwan.cities
-
     for key in data:
         cities[key] = data[key]['code']
 
-    # 初始化 PTX
     ptx = PTX(PTX_ID, PTX_KEY)
-
     try:
         # 從 PTX 取得資料
         bus_stops = ptx.get("/v2/Bus/StopOfRoute/{city}/{route}".format(city=cities[city], route=route),
                             params={'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
     except KeyError:
         bus_stops = []
-    # 取得該城市符合條件的所有路線到站估計資料
+
     try:
-        # 從 PTX 取得資料
+        # 從 PTX 取得該城市符合條件的所有路線到站估計資料
         bus_times = ptx.get("/v2/Bus/EstimatedTimeOfArrival/{city}/{route}".format(city=cities[city], route=route),
                             params={'$select': 'StopUID,EstimateTime,StopStatus'})
     except KeyError:
         bus_times = []
-    # 取得該城市符合條件的所有路線公車定位資料
+
     try:
-        # 從 PTX 取得資料
+        # 從 PTX 取得該城市符合條件的所有路線公車定位資料
         bus_reals = ptx.get("/v2/Bus/RealTimeNearStop/{city}/{route}".format(city=cities[city], route=route),
                             params={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
     except KeyError:
         bus_reals = []
 
-    # 處理資料
     result = []
     for bus_stop in bus_stops:
         # 在 SubRouteUID 後方加入 Direction
