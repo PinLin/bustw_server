@@ -1,12 +1,12 @@
 import sys
 
-from ..utils import taiwan
+from ..utils.taiwan import taiwan
 
 
 def main() -> dict:
     result = []
 
-    data = taiwan.read_from_file(sys.path[0] + '/bustw_server/taiwan.json')
+    data = taiwan.cities
 
     for key in data:
         result.append({'key': key, 'name': data[key]['name']})

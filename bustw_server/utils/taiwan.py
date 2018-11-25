@@ -1,15 +1,20 @@
+import sys
 import json
 
 
-data = None
+class Taiwan:
+    def __init__(self):
+        self.__cities = None
 
-
-def read_from_file(path: str) -> dict:
-    global data
-
-    if data == None:
+    def load_cities(self, path: str):
         f = open(path, 'r')
-        data = json.load(f)
+        self.__cities = json.load(f)
         f.close()
 
-    return data
+    @property
+    def cities(self) -> dict:
+        return self.__cities
+
+
+taiwan = Taiwan()
+taiwan.load_cities(sys.path[0] + '/bustw_server/taiwan.json')
