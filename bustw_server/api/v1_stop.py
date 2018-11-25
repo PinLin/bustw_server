@@ -125,7 +125,3 @@ def main(city: str, route: str) -> dict:
 
     # 回傳
     return {'routes': result}
-
-
-if __name__ == '__main__':
-    main("Taipei", "72")
