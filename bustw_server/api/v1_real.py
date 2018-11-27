@@ -17,7 +17,7 @@ def main(city: str, route: str) -> dict:
     try:
         # 從 PTX 取得資料
         bus_reals = ptx.get("/v2/Bus/RealTimeNearStop/{city}".format(city=cities[city]),
-                            params={'$select': 'PlateNumb,RouteUID,RouteName,StopUID,BusStatus,A2EventType'})
+                            params={'$select': 'PlateNumb,RouteUID,RouteName,StopUID,StopName,BusStatus,A2EventType'})
     except KeyError:
         bus_reals = []
 
@@ -30,8 +30,10 @@ def main(city: str, route: str) -> dict:
             'routeName': bus_real['RouteName']['Zh_tw'],
             # 車牌號碼
             'busNumber': bus_real['PlateNumb'],
-            # 站牌名稱
+            # 站牌辨識碼
             'stopUID': bus_real['StopUID'],
+            # 站牌名稱
+            'stopName': bus_real['StopName'],
             # 行車狀態
             'busStatus': bus_real.get('BusStatus') or 0,
             # 進站離站
