@@ -54,7 +54,7 @@ def stop(city, route):
 def real(city, route):
     """取得該城市符合條件的所有路線定位資料"""
     return jsonify({
-        'buses': list(v1_real.main(city, route).values())
+        'buses': v1_real.main(city, route)
     })
 
 
@@ -63,5 +63,5 @@ def real(city, route):
 def time(city, route):
     """取得該城市符合條件的所有路線時間資料"""
     return jsonify({
-        'times': list(v1_time.main(city, route).values())
+        'times': v1_time.main(city, route)
     })
