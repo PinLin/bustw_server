@@ -6,6 +6,7 @@ from ..config import PTX_ID, PTX_KEY
 
 
 def main(city: str, route: str) -> dict:
+    """取得該城市符合條件的所有路線基本資料"""
     cities = {}
 
     data = taiwan.cities
@@ -38,7 +39,7 @@ def main(city: str, route: str) -> dict:
         # 如果有限制路線名稱就篩選
         if route != None and not route in temp['routeName']:
             continue
-        
+
         result.append(temp)
 
     # 回傳

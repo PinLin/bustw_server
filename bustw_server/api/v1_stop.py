@@ -6,6 +6,7 @@ from ..config import PTX_ID, PTX_KEY
 
 
 def main(city: str, route: str) -> dict:
+    """取得該城市符合條件的所有路線站牌資料"""
     cities = {}
 
     data = taiwan.cities
