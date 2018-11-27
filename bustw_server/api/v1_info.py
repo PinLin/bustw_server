@@ -17,7 +17,7 @@ def main(city: str, route: str) -> dict:
     try:
         # 從 PTX 取得資料
         bus_routes = ptx.get("/v2/Bus/Route/{city}".format(city=cities[city]),
-                             params={'$select': 'RouteUID,RouteName,City,DepartureStopNameZh,DestinationStopNameZh'})
+                             params={'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh,City'})
     except KeyError:
         bus_routes = []
 
@@ -29,7 +29,7 @@ def main(city: str, route: str) -> dict:
             # 路線名稱
             'routeName': bus_route['RouteName']['Zh_tw'],
             # 城市名稱
-            'city': bus_route.get('City') or city,
+            'city': city,
             # 起站名稱
             'departureStopName': bus_route.get('DepartureStopNameZh') or '',
             # 終站名稱
