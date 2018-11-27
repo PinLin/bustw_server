@@ -21,7 +21,7 @@ def main(city: str, route: str) -> dict:
     except KeyError:
         bus_times = []
 
-    result = []
+    result = {}
     for bus_time in bus_times:
         temp = {
             # 路線辨識碼
@@ -42,7 +42,7 @@ def main(city: str, route: str) -> dict:
         if route != None and not route in temp['routeName']:
             continue
 
-        result.append(temp)
+        result[temp['routeUID']] = temp
 
     # 回傳
-    return {'times': result}
+    return {'times': list(result.values())}
