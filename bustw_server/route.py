@@ -21,7 +21,7 @@ def city():
 @v1_api.route('/v1/info/<city>/', defaults={'route': None}, strict_slashes=False)
 @v1_api.route('/v1/info/<city>/<route>', strict_slashes=False)
 def info(city, route):
-    """取得該城市符合條件的所有路線"""
+    """取得該城市符合條件的所有路線基本資料"""
     return jsonify(v1_info.main(city, route))
 
 
