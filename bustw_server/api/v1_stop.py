@@ -34,7 +34,7 @@ def main(city: str, route: str) -> dict:
             'subRoutes': [
                 {
                     # 子路線辨識碼
-                    'subRouteUID': bus_stop['SubRouteUID'] + str(bus_stop.get('Direction') or ''),
+                    'subRouteUID': bus_stop['SubRouteUID'] + str(bus_stop.get('Direction') or 0),
                     # 子路線名稱
                     'subRouteName': bus_stop['SubRouteName']['Zh_tw'].split('(')[0],
                     # 站牌列表

@@ -35,7 +35,7 @@ def main(city: str, route: str) -> dict:
             # 估計時間
             'estimateTime': bus_time.get('EstimateTime') or -1,
             # 停靠狀態
-            'stopStatus': bus_time.get('StopStatus') or -1,
+            'stopStatus': bus_time.get('StopStatus') or 0,
         }
 
         # 如果有限制路線名稱就篩選
