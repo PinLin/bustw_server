@@ -43,10 +43,10 @@ def stop(city, route):
         })
 
     else:
-        # 舊版 v1_stop 不支援僅城市搜尋
-        if route == None:
-            abort(404)
-        return jsonify(v1_stop_1.main(city, route))
+        # 舊版 v1_stop
+        return jsonify({
+            'routes': list(v1_stop_1.main(city, route).values())
+        })
 
 
 @v1_api.route('/v1/real/<city>/', defaults={'route': None}, strict_slashes=False)
