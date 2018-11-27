@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from .api import v1_root, v1_city, v1_info, v1_stop, v1_real
+from .api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
 
 
 # 初始化 city 藍圖
@@ -35,3 +35,9 @@ def stop(city, route):
 def real(city, route):
     """取得該城市符合條件的所有路線定位資料"""
     return jsonify(v1_real.main(city, route))
+
+
+@v1_api.route('/v1/time/<city>/<route>/', strict_slashes=False)
+def time(city, route):
+    """取得該城市符合條件的所有路線時間資料"""
+    return jsonify(v1_time.main(city, route))
