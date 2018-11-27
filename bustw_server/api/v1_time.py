@@ -5,7 +5,7 @@ from ..utils.taiwan import taiwan
 from ..config import PTX_ID, PTX_KEY
 
 
-def main(city: str, route: str) -> dict:
+def main(city: str, route: str) -> list:
     """取得該城市符合條件的所有路線定位資料"""
     cities = {}
 
