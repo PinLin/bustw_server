@@ -71,21 +71,18 @@ def main(city: str, route: str) -> dict:
             # 車牌號碼
             stop_list[-1]['buses'] = []
             for bus_real in bus_reals:
-                if bus_real['StopUID'] == stop['StopUID']:
-                    # 新公車
-                    stop_list[-1]['buses'].append({})
+                if bus_real['StopUID'] != stop['StopUID']:
+                    continue
+
+                # 新公車
+                stop_list[-1]['buses'].append({
                     # 車牌號碼
-                    stop_list[-1]['buses'][-1]['busNumber'] = bus_real['PlateNumb']
+                    'busNumber': bus_real['PlateNumb'],
                     # 行車狀態
-                    try:
-                        stop_list[-1]['buses'][-1]['busStatus'] = bus_real['BusStatus']
-                    except KeyError:
-                        stop_list[-1]['buses'][-1]['busStatus'] = 0
+                    'busStatus': bus_real.get('BusStatus') or 0,
                     # 進站離站
-                    try:
-                        stop_list[-1]['buses'][-1]['arriving'] = bus_real['A2EventType']
-                    except KeyError:
-                        stop_list[-1]['buses'][-1]['arriving'] = 0
+                    'arriving': bus_real.get('A2EventType') or 0,
+                })
 
         try:
             # 確認是否已經有該 UID 的資料
