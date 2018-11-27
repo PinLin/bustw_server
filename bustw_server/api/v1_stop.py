@@ -54,7 +54,7 @@ def main(city: str, route: str) -> dict:
 
         # 如果有多條子路線就合併
         if temp['routeUID'] in result:
-            result[temp['routeUID']]['subRoutes'].append(temp['subRoutes'])
+            result[temp['routeUID']]['subRoutes'].append(temp['subRoutes'][0])
         else:
             result[temp['routeUID']] = temp
 
