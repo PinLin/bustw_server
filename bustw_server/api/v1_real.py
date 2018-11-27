@@ -47,4 +47,4 @@ def main(city: str, route: str) -> dict:
         result[temp['routeUID']] = temp
 
     # 回傳
-    return {'buses': list(result.values())}
+    return result
