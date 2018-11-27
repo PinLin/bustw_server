@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, abort
-from .api import v1_root, v1_city, v1_info, v1_stop_2, v1_real, v1_time
+from .api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
 from .api import v1_stop_1
 
 
@@ -32,7 +32,7 @@ def stop(city, route):
     """取得該城市符合條件的所有路線站牌資料"""
     if request.args.get('ver'):
         # 新版 v1_stop
-        return jsonify(v1_stop_2.main(city, route))
+        return jsonify(v1_stop.main(city, route))
     else:
         # 舊版 v1_stop 不支援僅城市搜尋
         if route == None:
