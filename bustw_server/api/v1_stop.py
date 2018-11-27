@@ -4,6 +4,9 @@ from ptx_api import PTX
 from ..utils.taiwan import taiwan
 from ..config import PTX_ID, PTX_KEY
 
+# TODO: 暫時使用
+from .v1_real import main as v1_real_main
+
 
 def main(city: str, route: str) -> dict:
     """取得該城市符合條件的所有路線站牌資料"""
@@ -28,12 +31,8 @@ def main(city: str, route: str) -> dict:
     except KeyError:
         bus_times = []
 
-    try:
-        # 從 PTX 取得該城市符合條件的所有路線公車定位資料
-        bus_reals = ptx.get("/v2/Bus/RealTimeNearStop/{city}/{route}".format(city=cities[city], route=route),
-                            params={'$select': 'StopUID,PlateNumb,BusStatus,A2EventType'})
-    except KeyError:
-        bus_reals = []
+    # 取得該城市符合條件的所有路線公車定位資料
+    bus_reals = v1_real_main(city, route)['buses']
 
     result = []
     for bus_stop in bus_stops:
@@ -71,17 +70,17 @@ def main(city: str, route: str) -> dict:
             # 車牌號碼
             stop_list[-1]['buses'] = []
             for bus_real in bus_reals:
-                if bus_real['StopUID'] != stop['StopUID']:
+                if bus_real['stopUID'] != stop['StopUID']:
                     continue
 
                 # 新公車
                 stop_list[-1]['buses'].append({
                     # 車牌號碼
-                    'busNumber': bus_real['PlateNumb'],
+                    'busNumber': bus_real['busNumber'],
                     # 行車狀態
-                    'busStatus': bus_real.get('BusStatus') or 0,
+                    'busStatus': bus_real['busStatus'],
                     # 進站離站
-                    'arriving': bus_real.get('A2EventType') or 0,
+                    'arriving': bus_real['arriving'],
                 })
 
         try:
