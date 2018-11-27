@@ -33,7 +33,7 @@ def main(city: str, route: str) -> dict:
             # 站牌辨識碼
             'stopUID': bus_real['StopUID'],
             # 站牌名稱
-            'stopName': bus_real['StopName'],
+            'stopName': bus_real['StopName']['Zh_tw'],
             # 行車狀態
             'busStatus': bus_real.get('BusStatus') or 0,
             # 進站離站

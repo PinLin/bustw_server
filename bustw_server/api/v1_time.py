@@ -31,7 +31,7 @@ def main(city: str, route: str) -> dict:
             # 站牌辨識碼
             'stopUID': bus_time['StopUID'],
             # 站牌名稱
-            'stopName': bus_time['StopName'],
+            'stopName': bus_time['StopName']['Zh_tw'],
             # 估計時間
             'estimateTime': bus_time.get('EstimateTime') or -1,
             # 停靠狀態
