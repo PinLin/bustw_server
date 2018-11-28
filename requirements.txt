@@ -1,4 +1,3 @@
 flask
 ptx-api
 requests
-gunicorn
