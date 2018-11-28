@@ -3,7 +3,3 @@ def main() -> str:
     message = "Welcome to bustw_server!"
 
     return message
-
-
-if __name__ == '__main__':
-    main()

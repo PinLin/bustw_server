@@ -13,7 +13,3 @@ def main(city: str) -> list:
         result.append({'key': key, 'name': data[key]['name']})
 
     return result
-
-
-if __name__ == '__main__':
-    main()
