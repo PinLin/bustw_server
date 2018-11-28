@@ -3,8 +3,8 @@ import sys
 from ..utils.taiwan import taiwan
 
 
-def main() -> list:
-    """取得可用的城市列表"""
+def main(city: str) -> list:
+    """取得可用的城市列表資料"""
     result = []
 
     data = taiwan.cities
