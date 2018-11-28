@@ -1,4 +1,6 @@
-from flask import Blueprint, jsonify, request, abort
+import sys
+from flask import Blueprint, jsonify, request, send_from_directory
+
 from .api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
 from .api import v1_stop_1
 
@@ -13,6 +15,13 @@ def root():
     return jsonify({
         'message': v1_root.main()
     })
+
+
+@v1_api.route('/v1/docs/', defaults={'filename': 'index.html'}, strict_slashes=False)
+@v1_api.route('/v1/docs/<filename>', strict_slashes=False)
+def docs(filename):
+    """swagger 說明文件"""
+    return send_from_directory(sys.path[0] + '/bustw_server/docs', filename)
 
 
 @v1_api.route('/v1/city/', defaults={'city': None}, strict_slashes=False)
