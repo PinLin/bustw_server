@@ -15,11 +15,12 @@ def root():
     })
 
 
-@v1_api.route('/v1/city/', strict_slashes=False)
-def city():
-    """取得可用的城市列表"""
+@v1_api.route('/v1/city/', defaults={'city': None}, strict_slashes=False)
+@v1_api.route('/v1/city/<city>', strict_slashes=False)
+def city(city):
+    """取得可用的城市列表資料"""
     return jsonify({
-        'cities': v1_city.main()
+        'cities': v1_city.main(city)
     })
 
 
