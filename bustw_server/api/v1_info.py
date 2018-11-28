@@ -46,7 +46,7 @@ def main(city: str, route: str) -> dict:
             'routeUID': bus_route['RouteUID'],
             # 路線名稱
             'routeName': bus_route['RouteName']['Zh_tw'],
-            # 城市名稱
+            # 城市英文名稱
             'city': city,
             # 起站名稱
             'departureStopName': bus_route.get('DepartureStopNameZh') or '',

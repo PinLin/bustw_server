@@ -46,9 +46,9 @@ def main(city: str, route: str) -> dict:
             'routeUID': bus_stop['RouteUID'],
             # 路線名稱
             'routeName': bus_stop['RouteName']['Zh_tw'],
-            # 城市
+            # 城市英文名稱
             'city': bus_stop.get('City') or city,
-            # 子路線
+            # 子路線列表
             'subRoutes': [
                 {
                     # 子路線辨識碼

@@ -14,6 +14,7 @@ def main(city: str) -> list:
             'key': key, 'name': data[key]['name']
         }
 
+        # 如果有限制城市名稱就篩選
         if city != None and not city in temp['key']:
             continue
 
