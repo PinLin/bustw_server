@@ -29,5 +29,8 @@ bus tracker for Taiwanese Server
    gunicorn -w 1 -k gevent run:app
    ```
 
+## License
+MIT License
+
 ## Source
 [![公共運輸整合資訊流通服務平臺（Public Transport data eXchange, PTX）](https://imgur.com/wp2gOeU.png)](http://ptx.transportdata.tw/PTX)
