@@ -50,4 +50,4 @@ def main(city: str, route: str) -> dict:
         result[temp['routeUID']] = temp
 
     # 回傳
-    return result
+    return {'routes': list(result.values())}
