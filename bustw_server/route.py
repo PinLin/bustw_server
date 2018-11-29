@@ -12,9 +12,7 @@ v1_api = Blueprint('v1', __name__)
 @v1_api.route('/v1/', strict_slashes=False)
 def root():
     """顯示歡迎訊息"""
-    return jsonify({
-        'message': v1_root.main()
-    })
+    return jsonify(v1_root.main())
 
 
 @v1_api.route('/v1/docs/', defaults={'filename': 'index.html'}, strict_slashes=False)
