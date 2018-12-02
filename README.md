@@ -29,6 +29,16 @@ bus tracker for Taiwanese Server
    gunicorn -w 1 -k gthread --thread=8 run:app
    ```
 
+Or run by `Docker`.
+```bash
+docker run --name bustw_server \
+           --restart=always \
+           -p 65432:8000 -d \
+           -e PTX_ID='[hidden]' \
+           -e PTX_KEY='[hidden]' \
+           pinlin/bustw_server
+```
+
 ## License
 MIT License
 
