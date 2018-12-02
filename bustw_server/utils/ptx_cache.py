@@ -87,3 +87,6 @@ real_cache = PtxCache(10, '/v2/Bus/RealTimeNearStop',
 
 time_cache = PtxCache(10, '/v2/Bus/EstimatedTimeOfArrival',
                       {'$select': 'RouteUID,RouteName,StopUID,StopName,EstimateTime,StopStatus'})
+
+stop_cache = PtxCache(43200, '/v2/Bus/StopOfRoute',
+                      {'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
