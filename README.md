@@ -25,8 +25,8 @@ bus tracker for Taiwanese Server
 
    or Run by `gunicorn`.
    ```bash
-   pip3 install gunicorn gevent
-   gunicorn -w 1 -k gevent run:app
+   pip3 install gunicorn
+   gunicorn -w 1 -k gthread --thread=8 run:app
    ```
 
 ## License
