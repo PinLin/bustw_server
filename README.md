@@ -23,7 +23,7 @@ bus tracker for Taiwanese Server
    python3 run.py
    ```
 
-   or Run by `gunicorn`.
+   Or run by `gunicorn`.
    ```bash
    pip3 install gunicorn
    gunicorn -w 1 -k gthread --thread=8 run:app
