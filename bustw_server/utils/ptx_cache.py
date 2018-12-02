@@ -81,3 +81,6 @@ class PtxCache:
 
 info_cache = PtxCache(43200, '/v2/Bus/Route',
                       {'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh,City'})
+
+real_cache = PtxCache(10, '/v2/Bus/RealTimeNearStop',
+                      {'$select': 'PlateNumb,RouteUID,RouteName,StopUID,StopName,BusStatus,A2EventType'})
