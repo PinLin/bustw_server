@@ -41,7 +41,7 @@ def info(city, route):
 def stop(city, route):
     """取得該城市符合條件的所有路線站牌資料"""
     version = request.args.get('ver')
-    if not version or version == 1:
+    if not version or int(version) <= 1:
         # v1_stop v1
         return jsonify(v1_stop_1.main(city, route))
 
