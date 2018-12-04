@@ -437,6 +437,10 @@
     "Test.Message": {
       "type": "object",
       "properties": {
+        "version": {
+          "description": "版本號碼",
+          "type": "integer"
+        },
         "message": {
           "description": "訊息內容",
           "type": "string"
