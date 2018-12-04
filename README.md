@@ -1,6 +1,8 @@
 # bustw_server
 bus tracker for Taiwanese Server
 
+[Docs here](https://bus.ntut.com.tw/v1/docs/)
+
 ## Usage
 1. Clone.
    ```bash
