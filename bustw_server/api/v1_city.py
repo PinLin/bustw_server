@@ -20,4 +20,4 @@ def main(city: str) -> list:
 
         result.append(temp)
 
-    return result
+    return {'cities': result}
