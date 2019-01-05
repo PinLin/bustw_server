@@ -2,7 +2,7 @@ import sys
 from flask import Blueprint, jsonify, request, send_from_directory
 
 from .api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
-from .api import v1_stop_1
+from .api.old import v1_stop_1
 
 
 # 初始化 city 藍圖
