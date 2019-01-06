@@ -403,16 +403,22 @@
             "description": "城市英文名稱",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "ver",
+            "in": "query",
+            "description": "API 版本",
+            "type": "integer",
+            "enum": [
+              3
+            ]
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Time.Time"
-              }
+              "$ref": "#/definitions/Times"
             }
           }
         }
@@ -443,16 +449,22 @@
             "description": "路線名稱",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "ver",
+            "in": "query",
+            "description": "API 版本",
+            "type": "integer",
+            "enum": [
+              3
+            ]
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Time.Time"
-              }
+              "$ref": "#/definitions/Times"
             }
           }
         }
@@ -502,7 +514,7 @@
       "type": "object",
       "properties": {
         "routes": {
-          "description": "路線基本資訊列表",
+          "description": "路線基本資料列表",
           "type": "array",
           "items": {
             "$ref": "#/definitions/Info"
@@ -622,6 +634,18 @@
         "arriving": {
           "description": "進站離站",
           "type": "string"
+        }
+      }
+    },
+    "Times": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "description": "路線時間資料列表",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Time"
+          }
         }
       }
     },
