@@ -2,7 +2,7 @@ import sys
 from flask import Blueprint, jsonify, request, send_from_directory
 
 from .api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
-from .api import v1_stop_1
+from .api.old import v1_stop_1, v1_city_1
 
 
 # 初始化 city 藍圖
@@ -26,7 +26,14 @@ def docs(filename):
 @v1_api.route('/v1/city/<city>', strict_slashes=False)
 def city(city):
     """取得可用的城市列表資料"""
-    return jsonify(v1_city.main(city))
+    version = request.args.get('ver')
+    if not version or int(version) <= 2:
+        # v1_city v1
+        return jsonify(v1_city_1.main(city))
+
+    else:
+        # v1_city v3
+        return jsonify(v1_city.main(city))
 
 
 @v1_api.route('/v1/info/<city>/', defaults={'route': None}, strict_slashes=False)

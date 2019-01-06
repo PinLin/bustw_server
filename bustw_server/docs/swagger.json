@@ -76,14 +76,22 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "ver",
+            "in": "query",
+            "description": "API 版本",
+            "type": "integer",
+            "enum": [
+              3
+            ]
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/City.City"
-              }
+              "$ref": "#/definitions/Cities"
             }
           }
         }
@@ -107,16 +115,22 @@
             "description": "城市英文名稱",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "ver",
+            "in": "query",
+            "description": "API 版本",
+            "type": "integer",
+            "enum": [
+              3
+            ]
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/City.City"
-              }
+              "$ref": "#/definitions/Cities"
             }
           }
         }
@@ -447,7 +461,19 @@
         }
       }
     },
-    "City.City": {
+    "Cities": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "description": "城市列表",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/City"
+          }
+        }
+      }
+    },
+    "City": {
       "type": "object",
       "properties": {
         "key": {

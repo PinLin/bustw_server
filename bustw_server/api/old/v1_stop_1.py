@@ -1,8 +1,8 @@
 import sys
 
-from .v1_stop import main as v1_stop_main
-from .v1_real import main as v1_real_main
-from .v1_time import main as v1_time_main
+from ..v1_stop import main as v1_stop_main
+from ..v1_real import main as v1_real_main
+from ..v1_time import main as v1_time_main
 
 
 def main(city: str, route: str) -> dict:

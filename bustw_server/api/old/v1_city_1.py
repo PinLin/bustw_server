@@ -1,6 +1,6 @@
 import sys
 
-from ..utils.taiwan import taiwan
+from ...utils.taiwan import taiwan
 
 
 def main(city: str) -> list:
@@ -20,4 +20,4 @@ def main(city: str) -> list:
 
         result.append(temp)
 
-    return {'cities': result}
+    return result
