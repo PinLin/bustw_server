@@ -36,6 +36,7 @@ Or run by `Docker`.
 docker run --name bustw_server \
            --restart=always \
            -p 65432:8000 -d \
+           -e DOMAIN='bus.ntut.com.tw' \
            -e PTX_ID='[hidden]' \
            -e PTX_KEY='[hidden]' \
            pinlin/bustw_server
