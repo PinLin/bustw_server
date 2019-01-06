@@ -1,11 +1,11 @@
-from ..v1_stop import main as v1_stop_main
+from .v1_stop_2 import main as stop_main
 from .v1_real_1 import main as real_main
 from .v1_time_1 import main as time_main
 
 
 def main(city: str, route: str) -> dict:
     """取得該城市符合條件的所有路線站牌資料"""
-    bus_stops = v1_stop_main(city, route)
+    bus_stops = stop_main(city, route)
     bus_times = time_main(city, route)
     bus_reals = real_main(city, route)
 
