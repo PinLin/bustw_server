@@ -221,48 +221,6 @@
         }
       }
     },
-    "/stop/{city}": {
-      "get": {
-        "tags": [
-          "StopApi"
-        ],
-        "summary": "取得該城市所有路線站牌資料",
-        "description": "該城市所有路線站牌資料",
-        "operationId": "StopApi_city",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "city",
-            "in": "path",
-            "description": "城市英文名稱",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "ver",
-            "in": "query",
-            "description": "API 版本",
-            "type": "integer",
-            "enum": [
-              2
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Stop.Route"
-              }
-            }
-          }
-        }
-      }
-    },
     "/stop/{city}/{route}": {
       "get": {
         "tags": [
@@ -312,39 +270,6 @@
         }
       }
     },
-    "/real/{city}": {
-      "get": {
-        "tags": [
-          "RealApi"
-        ],
-        "summary": "取得該城市所有路線定位資料",
-        "description": "該城市所有路線定位資料",
-        "operationId": "RealApi_city",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "city",
-            "in": "path",
-            "description": "城市英文名稱",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Real.Bus"
-              }
-            }
-          }
-        }
-      }
-    },
     "/real/{city}/{route}": {
       "get": {
         "tags": [
@@ -380,45 +305,6 @@
               "items": {
                 "$ref": "#/definitions/Real.Bus"
               }
-            }
-          }
-        }
-      }
-    },
-    "/time/{city}": {
-      "get": {
-        "tags": [
-          "TimeApi"
-        ],
-        "summary": "取得該城市所有路線時間資料",
-        "description": "該城市所有路線時間資料",
-        "operationId": "TimeApi_city",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "city",
-            "in": "path",
-            "description": "城市英文名稱",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "ver",
-            "in": "query",
-            "description": "API 版本",
-            "type": "integer",
-            "enum": [
-              3
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Times"
             }
           }
         }
