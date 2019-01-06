@@ -3,5 +3,5 @@ def main() -> str:
 
     return {
         'message': "Welcome to bustw_server!",
-        'version': 2,
+        'version': 3,
     }
