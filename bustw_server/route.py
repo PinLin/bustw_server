@@ -22,18 +22,17 @@ def docs(filename):
     return send_from_directory(sys.path[0] + '/bustw_server/docs', filename)
 
 
-@v1_api.route('/v1/city/', defaults={'city': None}, strict_slashes=False)
-@v1_api.route('/v1/city/<city>', strict_slashes=False)
-def city(city):
+@v1_api.route('/v1/city/', strict_slashes=False)
+def city():
     """取得可用的城市列表資料"""
     version = request.args.get('ver')
     if not version or int(version) <= 2:
         # v1_city v1
-        return jsonify(v1_city_1.main(city))
+        return jsonify(v1_city_1.main())
 
     else:
         # v1_city v3
-        return jsonify(v1_city.main(city))
+        return jsonify(v1_city.main())
 
 
 @v1_api.route('/v1/info/<city>/', defaults={'route': None}, strict_slashes=False)

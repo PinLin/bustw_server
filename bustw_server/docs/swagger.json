@@ -97,45 +97,6 @@
         }
       }
     },
-    "/city/{city}": {
-      "get": {
-        "tags": [
-          "CityApi"
-        ],
-        "summary": "取得特定可用的城市列表資料",
-        "description": "特定可用的城市列表資料",
-        "operationId": "CityApi_city",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "city",
-            "in": "path",
-            "description": "城市英文名稱",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "ver",
-            "in": "query",
-            "description": "API 版本",
-            "type": "integer",
-            "enum": [
-              3
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Cities"
-            }
-          }
-        }
-      }
-    },
     "/info/{city}": {
       "get": {
         "tags": [
