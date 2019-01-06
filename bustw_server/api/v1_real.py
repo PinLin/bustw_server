@@ -33,4 +33,4 @@ def main(city: str, route: str) -> list:
         result.append(temp)
 
     # 回傳
-    return result
+    return {'buses': result}

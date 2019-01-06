@@ -262,10 +262,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Real.Bus"
-              }
+              "$ref": "#/definitions/Reals"
             }
           }
         }
@@ -451,7 +448,19 @@
         }
       }
     },
-    "Real.Bus": {
+    "Reals": {
+      "type": "object",
+      "properties": {
+        "buses": {
+          "description": "路線定位資料列表",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Real"
+          }
+        }
+      }
+    },
+    "Real": {
       "type": "object",
       "properties": {
         "routeUID": {
@@ -487,7 +496,7 @@
     "Times": {
       "type": "object",
       "properties": {
-        "routes": {
+        "stops": {
           "description": "路線時間資料列表",
           "type": "array",
           "items": {
@@ -496,7 +505,7 @@
         }
       }
     },
-    "Time.Time": {
+    "Time": {
       "type": "object",
       "properties": {
         "routeUID": {
