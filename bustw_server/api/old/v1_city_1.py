@@ -1,5 +1,3 @@
-import sys
-
 from ...utils.taiwan import taiwan
 
 
