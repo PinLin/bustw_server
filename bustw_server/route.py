@@ -22,18 +22,17 @@ def docs(filename):
     return send_from_directory(sys.path[0] + '/bustw_server/docs', filename)
 
 
-@v1_api.route('/v1/city/', defaults={'city': None}, strict_slashes=False)
-@v1_api.route('/v1/city/<city>', strict_slashes=False)
-def city(city):
+@v1_api.route('/v1/city/', strict_slashes=False)
+def city():
     """取得可用的城市列表資料"""
     version = request.args.get('ver')
     if not version or int(version) <= 2:
         # v1_city v1
-        return jsonify(v1_city_1.main(city))
+        return jsonify(v1_city_1.main())
 
     else:
         # v1_city v3
-        return jsonify(v1_city.main(city))
+        return jsonify(v1_city.main())
 
 
 @v1_api.route('/v1/info/<city>/', defaults={'route': None}, strict_slashes=False)
@@ -50,7 +49,6 @@ def info(city, route):
         return jsonify(v1_info.main(city, route))
 
 
-@v1_api.route('/v1/stop/<city>/', defaults={'route': None}, strict_slashes=False)
 @v1_api.route('/v1/stop/<city>/<route>/', strict_slashes=False)
 def stop(city, route):
     """取得該城市符合條件的所有路線站牌資料"""
@@ -64,14 +62,12 @@ def stop(city, route):
         return jsonify(list(v1_stop.main(city, route).values()))
 
 
-@v1_api.route('/v1/real/<city>/', defaults={'route': None}, strict_slashes=False)
 @v1_api.route('/v1/real/<city>/<route>/', strict_slashes=False)
 def real(city, route):
     """取得該城市符合條件的所有路線定位資料"""
     return jsonify(v1_real.main(city, route))
 
 
-@v1_api.route('/v1/time/<city>/', defaults={'route': None}, strict_slashes=False)
 @v1_api.route('/v1/time/<city>/<route>/', strict_slashes=False)
 def time(city, route):
     """取得該城市符合條件的所有路線時間資料"""
