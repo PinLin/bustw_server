@@ -47,4 +47,4 @@ def main(city: str, route: str) -> dict:
     result = list(result.values())
 
     # 回傳
-    return result
+    return {'routes': result}

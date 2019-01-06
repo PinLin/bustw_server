@@ -214,7 +214,7 @@
             "description": "API 版本",
             "type": "integer",
             "enum": [
-              2
+              2, 3
             ]
           }
         ],
@@ -222,10 +222,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Stop.Route"
-              }
+              "$ref": "#/definitions/Routes"
             }
           }
         }
@@ -400,7 +397,19 @@
         }
       }
     },
-    "Stop.Route": {
+    "Routes": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "description": "路線站牌資料列表",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Route"
+          }
+        }
+      }
+    },
+    "Route": {
       "type": "object",
       "properties": {
         "routeUID": {
@@ -419,12 +428,12 @@
           "description": "子路線列表",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Stop.SubRoutes"
+            "$ref": "#/definitions/SubRoute"
           }
         }
       }
     },
-    "Stop.SubRoutes": {
+    "SubRoute": {
       "type": "object",
       "properties": {
         "subRouteUID": {
@@ -439,12 +448,12 @@
           "description": "站牌列表",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Stop.Stop"
+            "$ref": "#/definitions/Stop"
           }
         }
       }
     },
-    "Stop.Stop": {
+    "Stop": {
       "type": "object",
       "properties": {
         "stopUID": {
