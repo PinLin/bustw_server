@@ -59,7 +59,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Test.Message"
+              "$ref": "#/definitions/Welcome"
             }
           }
         }
@@ -325,7 +325,7 @@
     }
   },
   "definitions": {
-    "Test.Message": {
+    "Welcome": {
       "type": "object",
       "properties": {
         "version": {
