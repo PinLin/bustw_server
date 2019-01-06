@@ -1,5 +1,5 @@
-from ..utils.taiwan import taiwan
-from ..utils.ptx_cache import stop_cache
+from ...utils.taiwan import taiwan
+from ...utils.ptx_cache import stop_cache
 
 
 def main(city: str, route: str) -> dict:
@@ -47,4 +47,4 @@ def main(city: str, route: str) -> dict:
     result = list(result.values())
 
     # 回傳
-    return {'routes': result}
+    return result
