@@ -1,5 +1,5 @@
-from ..utils.taiwan import taiwan
-from ..utils.ptx_cache import real_cache
+from ...utils.taiwan import taiwan
+from ...utils.ptx_cache import real_cache
 
 
 def main(city: str, route: str) -> list:
@@ -33,4 +33,4 @@ def main(city: str, route: str) -> list:
         result.append(temp)
 
     # 回傳
-    return {'buses': result}
+    return result

@@ -2,7 +2,7 @@ import sys
 from flask import Blueprint, jsonify, request, send_from_directory
 
 from .api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
-from .api.old import v1_stop_1, v1_city_1, v1_info_1, v1_time_1
+from .api.old import v1_stop_1, v1_city_1, v1_info_1, v1_real_1, v1_time_1
 
 
 # 初始化 city 藍圖
@@ -65,7 +65,14 @@ def stop(city, route):
 @v1_api.route('/v1/real/<city>/<route>/', strict_slashes=False)
 def real(city, route):
     """取得該城市符合條件的所有路線定位資料"""
-    return jsonify(v1_real.main(city, route))
+    version = request.args.get('ver')
+    if not version or int(version) <= 2:
+        # v1_real v1
+        return jsonify(v1_real_1.main(city, route))
+
+    else:
+        # v1_real v3
+        return jsonify(v1_real.main(city, route))
 
 
 @v1_api.route('/v1/time/<city>/<route>/', strict_slashes=False)
