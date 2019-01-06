@@ -28,5 +28,7 @@ def main(city: str, route: str) -> dict:
 
         result[temp['routeUID']] = temp
 
+    result = list(result.values())
+
     # 回傳
     return result
