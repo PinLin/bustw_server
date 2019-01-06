@@ -256,6 +256,15 @@
             "description": "路線名稱",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "ver",
+            "in": "query",
+            "description": "API 版本",
+            "type": "integer",
+            "enum": [
+              3
+            ]
           }
         ],
         "responses": {
