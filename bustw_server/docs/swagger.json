@@ -154,16 +154,22 @@
             "description": "城市英文名稱",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "ver",
+            "in": "query",
+            "description": "API 版本",
+            "type": "integer",
+            "enum": [
+              3
+            ]
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Info.Route"
-              }
+              "$ref": "#/definitions/Infos"
             }
           }
         }
@@ -194,16 +200,22 @@
             "description": "路線名稱",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "ver",
+            "in": "query",
+            "description": "API 版本",
+            "type": "integer",
+            "enum": [
+              3
+            ]
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Info.Route"
-              }
+              "$ref": "#/definitions/Infos"
             }
           }
         }
@@ -486,7 +498,19 @@
         }
       }
     },
-    "Info.Route": {
+    "Infos": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "description": "路線基本資訊列表",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Info"
+          }
+        }
+      }
+    },
+    "Info": {
       "type": "object",
       "properties": {
         "routeUID": {
