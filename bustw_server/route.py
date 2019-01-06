@@ -59,7 +59,7 @@ def stop(city, route):
 
     else:
         # v1_stop v2
-        return jsonify(list(v1_stop.main(city, route).values()))
+        return jsonify(v1_stop.main(city, route))
 
 
 @v1_api.route('/v1/real/<city>/<route>/', strict_slashes=False)

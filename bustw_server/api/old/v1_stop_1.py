@@ -9,6 +9,11 @@ def main(city: str, route: str) -> dict:
     bus_times = time_main(city, route)
     bus_reals = real_main(city, route)
 
+    routes = bus_stops
+    bus_stops = {}
+    for route in routes:
+        bus_stops[route['routeUID']] = route
+
     result = {}
     for routeUID in bus_stops:
         # 先複製一份 bus_stop
