@@ -392,7 +392,7 @@
           "description": "起站名稱",
           "type": "string"
         },
-        "destinationStopName：": {
+        "destinationStopName": {
           "description": "終站名稱",
           "type": "string"
         }
