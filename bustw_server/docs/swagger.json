@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "This is bustw_server, Bus tracker for Taiwanese Server.  You can find out more about this project at https://github.com/PinLin/bustw_server.",
-    "version": "1.0.3",
+    "version": "1.0.3-1",
     "title": "bustw_server",
     "contact": {
       "email": "moneycat711@gmail.com"
