@@ -2,7 +2,7 @@ import threading
 from datetime import datetime
 from ptx_api import PTX
 
-from ..config import PTX_CONFIG
+from ..config import PTX as CONFIG
 
 
 class PtxUpdater(threading.Thread):
@@ -28,7 +28,7 @@ class PtxCache:
         self.__params = params or {}
         self.__timeout = timeout
 
-        self.__ptx = PTX(PTX_CONFIG['ID'], PTX_CONFIG['KEY'])
+        self.__ptx = PTX(CONFIG['ID'], CONFIG['KEY'])
         self.__cache = {}
 
     def __valid(self, time: datetime) -> bool:
