@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 # 註冊藍圖
-app.register_blueprint(v1_api)
+app.register_blueprint(v1_api, url_prefix='/v1')
 
 
 def main():
