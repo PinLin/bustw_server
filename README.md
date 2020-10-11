@@ -1,7 +1,8 @@
-# bustw_server
-bus tracker for Taiwanese Server
+# [Deprecated] bustw_server
 
-[Docs here](https://bus.ntut.com.tw/v1/docs/)
+My new project for this purpose is here. https://github.com/PinLin/bustw-server
+
+bus tracker for Taiwanese Server
 
 ## Usage
 1. Clone.
