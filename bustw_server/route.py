@@ -15,13 +15,6 @@ def root():
     return jsonify(v1_root.main())
 
 
-@v1_api.route('/docs/', defaults={'filename': 'index.html'}, strict_slashes=False)
-@v1_api.route('/docs/<filename>', strict_slashes=False)
-def docs(filename):
-    """swagger 說明文件"""
-    return send_from_directory(sys.path[0] + '/bustw_server/docs', filename)
-
-
 @v1_api.route('/city/', strict_slashes=False)
 def city():
     """取得可用的城市列表資料"""
