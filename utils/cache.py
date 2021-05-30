@@ -1,6 +1,6 @@
 import threading
 from datetime import datetime
-from utils.ptx_api import PTX
+from utils.ptx import PTX
 
 from config import PTX as CONFIG
 
