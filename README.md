@@ -13,35 +13,21 @@ bus tracker for Taiwanese Server
 
 2. Install dependencies.
    ```bash
-   pip3 install -r requirements.txt
+   portry install
    ```
 
 3. Put `PTX_ID` and `PTX_KEY` to `bustw_server/config.py`.
-   ```bash
-   vim bustw_server/config.py
-   ```
 
 4. Run it.
    ```bash
-   python3 run.py
+   poetry run python3 app.py
    ```
 
    Or run by `gunicorn`.
    ```bash
    pip3 install gunicorn
-   gunicorn -w 1 -k gthread --thread=8 run:app
+   gunicorn -w 1 -k gthread --thread=8 app:app
    ```
-
-Or run by `Docker`.
-```bash
-docker run --name bustw_server \
-           --restart=always \
-           -p 65432:8000 -d \
-           -e DOMAIN='bus.ntut.com.tw' \
-           -e PTX_ID='[hidden]' \
-           -e PTX_KEY='[hidden]' \
-           pinlin/bustw_server
-```
 
 ## License
 MIT License
