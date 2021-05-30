@@ -1,9 +1,9 @@
 import sys
 from flask import Blueprint, jsonify, request, send_from_directory
 
-from .api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
-from .api.old import v1_city_1, v1_info_1, v1_stop_1, v1_real_1, v1_time_1
-from .api.old import v1_stop_2
+from api import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
+from api.old import v1_city_1, v1_info_1, v1_stop_1, v1_real_1, v1_time_1
+from api.old import v1_stop_2
 
 
 v1_api = Blueprint('v1', __name__)

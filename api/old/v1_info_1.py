@@ -1,5 +1,5 @@
-from ...utils.taiwan import taiwan
-from ...utils.ptx_cache import info_cache
+from utils.taiwan import taiwan
+from utils.ptx_cache import info_cache
 
 
 def main(city: str, route: str) -> dict:

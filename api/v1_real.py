@@ -1,5 +1,5 @@
-from ..utils.taiwan import taiwan
-from ..utils.ptx_cache import real_cache
+from utils.taiwan import taiwan
+from utils.ptx_cache import real_cache
 
 
 def main(city: str, route: str) -> list:

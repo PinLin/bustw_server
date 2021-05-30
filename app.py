@@ -1,9 +1,6 @@
-import sys
-import json
+from flask import Flask
 
-from flask import Flask, jsonify
-
-from .route import v1_api
+from route import v1_api
 
 # 初始化 Flask
 app = Flask(__name__)

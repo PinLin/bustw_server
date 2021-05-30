@@ -1,4 +1,4 @@
-from ..utils.taiwan import taiwan
+from utils.taiwan import taiwan
 
 
 def main() -> list:
@@ -14,4 +14,4 @@ def main() -> list:
 
         result.append(temp)
 
-    return {'cities': result}
+    return result
