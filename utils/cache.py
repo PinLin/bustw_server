@@ -5,7 +5,7 @@ from utils.ptx_api import PTX
 from config import PTX as CONFIG
 
 
-class PtxUpdater(threading.Thread):
+class CacheUpdater(threading.Thread):
     def __init__(self, source: dict, cache: dict, city: str):
         self.__url = source['url']
         self.__ptx = source['ptx']
@@ -22,7 +22,7 @@ class PtxUpdater(threading.Thread):
         }
 
 
-class PtxCache:
+class Cache:
     def __init__(self, timeout: int, url: str, params: dict=None):
         self.__url = url
         self.__params = params or {}
@@ -46,7 +46,7 @@ class PtxCache:
             # 更新快取
             if route != '':
                 # 另開執行緒進行更新
-                PtxUpdater({
+                CacheUpdater({
                     'url': self.__url,
                     'ptx': self.__ptx,
                     'params': self.__params,
@@ -79,14 +79,14 @@ class PtxCache:
         return result
 
 
-info_cache = PtxCache(43200, '/v2/Bus/Route',
+info_cache = Cache(43200, '/v2/Bus/Route',
                       {'$select': 'RouteUID,RouteName,DepartureStopNameZh,DestinationStopNameZh,City'})
 
-real_cache = PtxCache(10, '/v2/Bus/RealTimeNearStop',
+real_cache = Cache(10, '/v2/Bus/RealTimeNearStop',
                       {'$select': 'PlateNumb,RouteUID,RouteName,StopUID,StopName,BusStatus,A2EventType'})
 
-time_cache = PtxCache(10, '/v2/Bus/EstimatedTimeOfArrival',
+time_cache = Cache(10, '/v2/Bus/EstimatedTimeOfArrival',
                       {'$select': 'RouteUID,RouteName,StopUID,StopName,EstimateTime,StopStatus'})
 
-stop_cache = PtxCache(43200, '/v2/Bus/StopOfRoute',
+stop_cache = Cache(43200, '/v2/Bus/StopOfRoute',
                       {'$select': 'RouteUID,RouteName,City,Direction,SubRouteUID,SubRouteName,Stops'})
