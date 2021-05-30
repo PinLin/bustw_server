@@ -9,7 +9,6 @@ license = "MIT"
 python = "^3.6"
 flask = "^2.0"
 requests = "^2.25"
-ptx-api = "^1.0"
 
 [tool.poetry.dev-dependencies]
 
