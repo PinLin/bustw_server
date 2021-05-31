@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from flask import Flask
-from controllers import v1_root, v1_info, v1_stop, v1_real, v1_time, v1_stop_old
+from controllers import v1_info, v1_stop, v1_real, v1_time, v1_stop_old
 
 # 初始化 Flask
 app = Flask(__name__)
@@ -9,7 +9,9 @@ app = Flask(__name__)
 @app.route('/v1', strict_slashes=False)
 def root():
     """顯示歡迎訊息"""
-    return jsonify(v1_root.main())
+    return {
+        'message': "Welcome to bustw_server!",
+    }
 
 
 @app.route('/v1/info/<city>/', defaults={'route': None}, strict_slashes=False)
