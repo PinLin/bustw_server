@@ -37,6 +37,9 @@ class Cache:
     def get(self, city: str, route: str=''):
         """取得該城市路線資料"""
 
+        if city != 'InterCity':
+            city = 'City/' + city
+
         # 快取不存在或過期
         if not city in self.__cache or not self.__valid(self.__cache[city]['time']):
             # 先取得結果

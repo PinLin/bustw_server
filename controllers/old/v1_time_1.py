@@ -1,15 +1,9 @@
-from utils.taiwan import taiwan
 from utils.cache import time_cache
 
 
 def main(city: str, route: str) -> list:
     """取得該城市符合條件的所有路線定位資料"""
-    cities = {}
-    data = taiwan.cities
-    for key in data:
-        cities[key] = data[key]['code']
-
-    bus_times = time_cache.get(cities[city], route or '')
+    bus_times = time_cache.get(city, route or '')
 
     result = []
     for bus_time in bus_times:

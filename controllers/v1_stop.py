@@ -1,15 +1,9 @@
-from utils.taiwan import taiwan
 from utils.cache import stop_cache
 
 
 def main(city: str, route: str) -> dict:
     """取得該城市符合條件的所有路線站牌資料"""
-    cities = {}
-    data = taiwan.cities
-    for key in data:
-        cities[key] = data[key]['code']
-
-    bus_stops = stop_cache.get(cities[city], route or '')
+    bus_stops = stop_cache.get(city, route or '')
 
     result = {}
     for bus_stop in bus_stops:
