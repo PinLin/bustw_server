@@ -1,8 +1,8 @@
 from flask import jsonify, request
 from flask import Flask
 from controllers.old import v1_stop_2
-from controllers.old import v1_city_1, v1_info_1, v1_stop_1, v1_real_1, v1_time_1
-from controllers import v1_root, v1_city, v1_info, v1_stop, v1_real, v1_time
+from controllers.old import v1_info_1, v1_stop_1, v1_real_1, v1_time_1
+from controllers import v1_root, v1_info, v1_stop, v1_real, v1_time
 
 # 初始化 Flask
 app = Flask(__name__)
@@ -12,19 +12,6 @@ app = Flask(__name__)
 def root():
     """顯示歡迎訊息"""
     return jsonify(v1_root.main())
-
-
-@app.route('/v1/city/', strict_slashes=False)
-def city():
-    """取得可用的城市列表資料"""
-    version = request.args.get('ver')
-    if not version or int(version) <= 2:
-        # v1_city v1
-        return jsonify(v1_city_1.main())
-
-    else:
-        # v1_city v3
-        return jsonify(v1_city.main())
 
 
 @app.route('/v1/info/<city>/', defaults={'route': None}, strict_slashes=False)
