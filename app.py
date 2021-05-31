@@ -1,7 +1,6 @@
 from flask import jsonify, request
 from flask import Flask
-from controllers.old import v1_stop_1
-from controllers import v1_root, v1_info, v1_stop, v1_real, v1_time
+from controllers import v1_root, v1_info, v1_stop, v1_real, v1_time, v1_stop_old
 
 # 初始化 Flask
 app = Flask(__name__)
@@ -25,11 +24,9 @@ def stop(city, route):
     """取得該城市符合條件的所有路線站牌資料"""
     version = request.args.get('ver')
     if not version or int(version) <= 1:
-        # v1_stop v1
-        return jsonify(v1_stop_1.main(city, route))
+        return jsonify(v1_stop_old.main(city, route))
 
     else:
-        # v1_stop v3
         return jsonify(v1_stop.main(city, route))
 
 
