@@ -1,6 +1,6 @@
-from controllers.v1_stop import main as get_stop
-from controllers.v1_time import main as get_time
-from controllers.v1_real import main as get_real
+from services.stop import main as get_stop
+from services.time import main as get_time
+from services.real import main as get_real
 
 
 def main(city: str, route: str) -> dict:
